@@ -1,0 +1,194 @@
+.wrapper 
+{
+    width: 80vw; 
+}
+#ms 
+{
+    left: 10vw; 
+    height: 62vh;
+    top : 8vh;
+}
+.li 
+{
+    margin-bottom: 1vh;
+}
+#btnAj 
+{
+    left: 7.5%;
+}
+.th 
+{
+    text-align: center;
+    font-size: 2.8vmin; 
+    padding: 0.7vmin; 
+}
+#cin 
+{
+    display: none;
+}
+.cin 
+{
+    width: 60%;
+}
+.img 
+{
+    height: 22vh;
+}
+@media screen and (max-width : 1000px) {
+    #btnAj 
+    {
+        left: 6%;
+    }
+    .wrapper 
+    {
+        width: 94vw; 
+    }
+    #ms 
+    {
+        left: 16.5vw;
+        top : -30vh;
+    }
+    .th 
+    {
+        font-size: 2.5vmin;
+    }
+    .cin 
+    {
+        width: 100%;
+    }
+}
+
+tr:nth-of-type(odd)
+{
+    background-color: #edf3fa; 
+}
+tr:nth-of-type(even) 
+{
+    background-color: white;
+}
+.imgs 
+{
+    width: 3.9vmin; 
+    height: 3.9vmin;
+}
+.imgsAdd 
+{
+    width: 4.1vmin; 
+    height: 4.1vmin;
+}
+#details 
+{
+    display: none;
+}
+#dtAbnm 
+{
+    display: none;
+}
+#dtPriv 
+{
+    display: none;
+}
+#ajPriv 
+{
+    display: none;
+}
+#ajLiv 
+{
+    display: none;
+}
+#prAdr 
+{
+    display: none;
+}
+#stAj 
+{
+    display: none;
+}
+#sttAj 
+{
+    display: none;
+}
+#upLiv 
+{
+    display: none;
+}
+#stUp 
+{
+    display: none;
+}
+.msg-hdd 
+{
+    top: -180vmin;
+}
+.msg-shh 
+{
+    top: -5vmin; 
+}
+.msg 
+{
+    font-size: 1.7vmin;
+}
+.msgBg 
+{
+    font-size: 3vmin;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+.icBg 
+{
+    width: 2.4vmin; 
+    height: 2.4vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .msgBg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+    .icBg 
+    {
+        width: 3.5vmin; 
+        height: 3.5vmin;
+    }
+}
+.btt
+{
+    background-color: #318CE7;
+}
+.btt:disabled 
+{
+    background-color: #ccc;
+    color: black;
+}
+.sl 
+{
+    border: solid 1px #dee2e6;
+}
+.bdd 
+{
+    border: solid 1px rgb(207, 21, 21);
+}
+.sgs 
+{
+    cursor: pointer; 
+    padding: 1vmin; 
+}
+.sgs:hover 
+{
+    background-color: #e9ecef;
+}
+.bd 
+{
+    border-bottom: solid 1px #dee2e6;
+}

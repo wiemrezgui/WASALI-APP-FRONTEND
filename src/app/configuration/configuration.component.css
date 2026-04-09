@@ -1,0 +1,66 @@
+.th 
+{
+    text-align: center;
+    font-size: 2.8vmin; 
+    padding: 1vmin; 
+}
+tr:nth-of-type(odd)
+{
+    background-color: #edf3fa; 
+}
+tr:nth-of-type(even) 
+{
+    background-color: white;
+}
+.imgs 
+{
+    width: 3.5vmin; 
+    height: 3.5vmin;
+}
+.msg-hdd 
+{
+    top : -180vmin; 
+    left: -0.3vmin;
+}
+.msg-shh 
+{
+    top: -5vmin; 
+}
+.msg 
+{
+    font-size: 1.7vmin;
+}
+.msgBg 
+{
+    font-size: 3vmin;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+.icBg 
+{
+    width: 2.4vmin; 
+    height: 2.4vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .msgBg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+    .icBg 
+    {
+        width: 3.5vmin; 
+        height: 3.5vmin;
+    }
+}

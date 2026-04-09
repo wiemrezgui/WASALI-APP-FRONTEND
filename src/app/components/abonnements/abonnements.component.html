@@ -1,0 +1,21 @@
+<div class="wrapper" style="display: flex; align-items: center; justify-content: center; position: relative;"> 
+    <button style="position: absolute; height: 6vh; top: 5vh;  right: 27vmin; border: none; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; border: solid 0.3vmin #318CE7; background-color: white; letter-spacing: 1px; font-size: 2.8vmin; padding: 0.5vmin;" (click)="aff()">Afficher tout</button><select style="position: absolute; height: 6vh; top: 5vh; right: 7.5%; border-radius: 3px; border: solid 0.3vmin #318CE7; cursor: pointer; padding: 0.3vmin;" (change)="affiche($event)"><option *ngFor="let nb of getNbs()" value="{{nb}}">{{nb}}</option></select> 
+        <table style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; width: 85%; margin-top: 15vh; margin-bottom: 1vmin;">
+            <thead>
+                <tr style="background-color: #318CE7;">
+                <th style="font-weight: 500;" class="th">Numéro</th>
+                <th style="font-weight: 500;" class="th">Date de début</th>
+                <th style="font-weight: 500;" class="th">Date de fin</th>
+                <th style="font-weight: 500;" class="th">État</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ab of abs">
+                    <td class="th">{{ ab.id }}</td>
+                    <td class="th">{{ ab.debut }}</td>
+                    <td class="th">{{ ab.fin }}</td>
+                    <td class="th" *ngIf="ab.etat == 'expiré'" style="color : red;">{{ ab.etat }}</td>
+                    <td class="th" *ngIf="ab.etat == 'en cours'" style="color : #10db64;">{{ ab.etat }}</td>
+            </tbody>
+        </table>
+</div>

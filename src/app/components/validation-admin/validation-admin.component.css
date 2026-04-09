@@ -1,0 +1,55 @@
+.logo 
+{
+    margin-left: 3.5vmin;  
+    text-decoration: none;
+}
+.tx 
+{
+    height: 72vh;
+    background: linear-gradient(180deg, #318CE7, transparent); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+.button 
+{
+    border: none; 
+    font-size: 2.8vmin;  
+    padding: 1.2vmin;  
+    background-color: #318CE7; 
+    text-align: center;
+}
+.button:hover
+{
+    opacity: 0.97;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+.icBg 
+{
+    width: 2.4vmin; 
+    height: 2.4vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .msgBg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+    .icBg 
+    {
+        width: 3.5vmin; 
+        height: 3.5vmin;
+    }
+}

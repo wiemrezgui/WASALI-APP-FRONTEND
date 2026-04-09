@@ -1,0 +1,57 @@
+<div id="pp" style="position: fixed; width: 100vw; height: 100vh; display: none; opacity: 0; z-index: 2; transition: all 0.4s ease-in-out;" #pp>
+    <div id="ms" style="position: absolute; background-color: white; border-radius: 3px; box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;">
+        <img style="position : absolute; right : 1.5vmin; top : 1.5vmin; height: 3.4vmin; width: 3.4vmin; cursor: pointer; z-index : 3;" src="assets/icons/close.png" onclick="closeWwww()">
+        <div id="dts" #dts style="margin-top: 7vh; margin-left: 7vmin; margin-bottom: 7vh;">
+            <div style="font-size : 4.5vmin; color : #318CE7; text-decoration: underline; font-weight: 500;">Infos</div> 
+            <ul style="list-style-type: square; height: 12vh; color: #00FF00; padding: 0; margin: 0; margin-left: 5vmin; margin-top: 1vh; ">
+                <li class="li" style="font-size: 2.8vmin;"><span style="font-weight: 500; ">Téléphone : </span><span style="color: black;">{{ tel }}</span></li>
+                <li class="li" style="font-size: 2.8vmin;"><span style="font-weight: 500; ">Type de véhicule : </span><span style="color: black;">{{ type }}</span></li>
+                <li class="li" style="font-size: 2.8vmin;"><span style="font-weight: 500;">Genre : </span><span style="color: black;">{{ genre }}</span></li>
+            </ul>
+            <div style="font-size : 4.5vmin; color : #318CE7; text-decoration: underline; margin-top : 7vh; font-weight: 500;">Tarifs</div>
+            <ul style="list-style-type: square; margin-bottom: 1vh; height: 12vh; color: #00FF00; padding: 0; margin: 0; margin-left: 5vmin; margin-top: 1vh;">
+                <li class="li" style="font-size: 2.8vmin;" *ngFor="let int of intDists">
+                    <span style="font-weight: 500;">[{{ int.intervalleDistance.borneGauche }}, {{ int.intervalleDistance.borneDroite }}] : </span><span style="color: black;">{{ int.tarif }} DT</span>
+                </li>
+            </ul>
+        </div>
+        <div id="cin" #cin style="height: 70vh;">
+            <div style="display: flex; height: 70vh; align-items: center; justify-content: center;">
+                <div class="cin" style="margin-top: 2.5vh; border-radius: 3px;">
+                <img class="img" style="width: 100%;" [src]="'data:image/png;base64,' + cinnn">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="position: relative;">
+    <div [class.msg-shh] = "msgF_e"  class="msg-hdd" style="display: flex; z-index: 2; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Notre serveur rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span></div>
+    <div [class.msg-shh] = "msgF_t"  class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Nous rencontrons actuellement un problème de transmission de mail. Veuillez réessayer plus tard.</span></div>
+    <button style="top : 2vh; position: absolute; right: 30vmin; height: 5vh; border: none; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; border: solid 0.3vmin #318CE7; background-color: white; letter-spacing: 1px; font-size: 2.8vmin;" (click)="aff()">Afficher tout</button><select style="top : 2vh; height: 5vh; position: absolute; right: 14.5vmin; border-radius: 3px; border: solid 0.3vmin #318CE7; cursor: pointer;" (change)="affiche($event)"><option *ngFor="let nb of getNbs()" value="{{nb}}">{{nb}}</option></select>
+<div class="wrapper" style="padding: 3vmin; padding-top: 6vh;">
+    <div style="display: flex; align-items: center; justify-content: center;">
+    <table style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; width: 85%; margin-top: 6vmin; margin-bottom: 1vmin;">
+        <thead>
+            <tr style="background-color: #318CE7;">
+            <th style="font-weight: 500;" class="th"></th>
+            <th style="font-weight: 500;" class="th">Nom et prénom</th>
+            <th style="font-weight: 500;" class="th">Email</th>
+            <th style="font-weight: 500;" class="th">Carte d'identité</th>
+            <th style="font-weight: 500;" class="th">Infos/Tarifs</th>
+            <th style="font-weight: 500;" class="th">Validation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dm of dms">
+                <td class="th"><img *ngIf="dm.livreur.photo" [src]="'data:image/png;base64,' + dm.livreur.photo" style="height: 7vmin; width: 7vmin; border-radius: 100vmin;"><img *ngIf="!dm.livreur.photo && dm.livreur.genre == 'Masculin'"  src="assets/images/man.jpg" style="height: 7vmin; width: 7vmin; border-radius: 100vmin; border: solid 0.4vmin;"><img *ngIf="!dm.livreur.photo && dm.livreur.genre == 'Feminin'" src="assets/images/woman.jpg" style="height: 7vmin; width: 7vmin; border-radius: 100vmin; border: solid 0.4vmin;"></td>
+                <td class="th">{{ dm.livreur.prenom }} {{ dm.livreur.nom }}</td>
+                <td class="th">{{ dm.livreur.email }}</td>
+                <td style="text-align: center;"><button style="background-color: white; border: solid 0.3vmin #318CE7; border-radius: 3px; font-size: 2.5vmin;" (click)="affCin(dm.livreur.cin)">CIN</button></td>
+                <td class="th"><button (click)="passer(dm.intDists, dm.livreur.tel, dm.livreur.genre, dm.livreur.typeVehicule.type)" style="border: none; background-color: transparent;"><img src="assets/icons/details.png"  class="imgs"></button></td>
+                <td class="th"><button [disabled]="processing" (click)="validateDm(dm.livreur.id)" style="border: none; background-color: transparent; padding: 0; margin-right: 0.5vmin;"><img class="imgs" src="assets/images/check.png"></button><button [disabled]="processing" (click)="rejectDm(dm.livreur.id)" style="border: none; background-color: transparent; padding: 0;"><img class="imgs" src="assets/images/dismiss.png"></button></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+</div>

@@ -1,0 +1,246 @@
+.wrapper 
+{
+    width: 85vw;
+}
+th,td 
+{
+    text-align: center; 
+    padding: 1vmin;  
+    font-size: 2.2vmin;
+}
+tr:nth-of-type(odd)
+{
+    background-color: #edf3fa; 
+}
+tr:nth-of-type(even) 
+{
+    background-color: white;
+}
+.th 
+{
+    font-weight: 500; 
+    letter-spacing: 1px;
+    background-color: #318CE7;
+}
+#ms 
+{
+    left: 12.5vw; 
+    height: 65vh;
+    top : 8vh;
+}
+.EnCours 
+{
+    border: solid green;
+}
+.dvv 
+{
+    padding: 4vmin;
+}
+.add 
+{
+    top: -4vh;
+}
+#cin 
+{
+    display: none;
+}
+.cin 
+{
+    width: 60%;
+}
+.img
+{
+    height: 25vh;
+}
+@media screen and (max-width : 1000px) {
+    #ms 
+    {
+        left: 16.5vw; 
+        top: -29vh;
+    }
+    .add 
+    {
+        top: -6.5vh; 
+    }
+    .wrapper 
+    {
+        width: 94vw;
+    }
+    .dvv 
+    {
+        padding: 0vmin;
+    }
+    .th, td 
+    {
+        font-size: 2.8vmin;
+    }
+    .cin 
+    {
+        width: 100%;
+    }
+}
+.msg-hdd 
+{
+    top : -180vmin; 
+    left: -0.3vmin;
+}
+.msg-shh 
+{
+    top: -5vmin; 
+}
+.et-bt 
+{
+    margin-bottom: 1vmin;
+}
+.btnn:hover 
+{
+    opacity: 0.95;
+}
+.btns
+{
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column;
+}
+.tb 
+{
+    font-size: 1.7vmin; 
+}
+#details
+{
+    display: none; 
+}
+#map
+{
+    display: none;
+}
+.thh 
+{
+    font-size: 2.8vmin;
+}
+.spt
+{
+    letter-spacing: 1px; 
+    color: #00FF00; 
+    font-weight: 500;
+}
+li::marker 
+{
+    color: #00FF00;
+}
+.ads 
+{
+    height: 6vh; 
+    width: 100%;
+    font-size: 2.5vmin;
+}
+.sv:disabled 
+{
+    color: black;
+}
+
+.bn:disabled 
+{
+    opacity: 1; 
+    color: black;
+}
+.btt 
+{
+    border-radius: 3px; 
+    font-size: 1.9vmin; 
+    background-color: #318CE7; 
+}
+::placeholder 
+{
+    font-size: 2.8vmin;
+}
+.bd 
+{
+    border-bottom: solid 1px #dee2e6;
+}
+.sgs 
+{
+    cursor: pointer; 
+    padding: 0.7vmin; 
+}
+.sgs:hover 
+{
+    background-color: #e9ecef;
+}
+#adds
+{
+    display: none;
+}
+#update
+{
+    opacity: 0;
+    display: none;
+    transition: all 0.4s ease-in-out;
+}
+#btn:hover 
+{
+    opacity: 0.97;
+}
+.lbl 
+{
+    font-size: 2.8vmin;
+    margin-bottom: 0.5vmin; 
+    letter-spacing: 1px; 
+    width: 70%;
+}
+.btt
+{
+    background-color: #318CE7;
+}
+.btt:disabled 
+{
+    background-color: #ccc;
+    color: black;
+}
+#add 
+{
+    display: none;
+}
+#addsIns 
+{
+    display: none;
+}
+.msg 
+{
+    font-size: 1.7vmin;
+}
+.msgBg 
+{
+    font-size: 3vmin;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+.icBg 
+{
+    width: 2.4vmin; 
+    height: 2.4vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .msgBg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+    .icBg 
+    {
+        width: 3.5vmin; 
+        height: 3.5vmin;
+    }
+}

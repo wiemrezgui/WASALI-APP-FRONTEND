@@ -1,0 +1,112 @@
+<div id="pp" #pp>
+    <div id="ms">
+        <img style="position : absolute; right : 1.5vmin; top : 1.5vmin; height: 3.4vmin; width: 3.4vmin; cursor: pointer;" src="assets/icons/close.png" onclick="closeWindow()">
+        <div style="text-align: center; margin-top: 5vh; height: 6vh; letter-spacing: 1px; color: #318CE7; font-size: 4vmin; font-weight: bold; text-decoration: underline;">Changer adresse actuelle</div>
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 3vh; padding: 2vh; height: 18vh;">
+        <form style="width: 90%; position: relative; height: 10vh; margin-bottom: 9vmin;">
+            <div style="display: flex; align-items: center; justify-content: center; border-bottom: solid 0.35vmin #dee2e6; height: 4.5vh;"><img src="assets/icons/location.png" style="height: 5vmin; width: 5vmin; margin-right: 1vmin;"><input style="border: none; width: 100%; height: 3vh; outline: none; font-size: 2.8vmin;" [(ngModel)] = "adr" (input)="handleInpp($event)" name="adr" autocomplete="off" spellcheck="false" placeholder="Rechercher adresse" (click) = "displayy($event)" ></div>
+            <ul class="bd" *ngIf="showsgss" style="position: absolute; top: 4.5vh; list-style: none; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; width: 100%; z-index: 1; background-color: white; font-size: 2.8vmin; padding: 0; max-height: 30vh; overflow-y: auto; border-left: solid 1px #dee2e6; border-right: solid 1px #dee2e6;">
+                <li *ngFor="let sg of sgss" class="sgs" (click)="selectAdd(sg)">{{ sg.title }}</li>
+            </ul>
+        </form>
+        
+        <form (ngSubmit) = "getPosition()">
+            <button [disabled]="processing" style="background-color: white; border: none; border-radius: 2px; font-weight: bold; color : #00FF00; font-size: 2.8vmin; text-align: center;"><img src="assets/icons/navigation.png" style="height: 1.8vmin; width: 1.8vmin; margin-right: 1vmin; margin-bottom: 0.6vmin;">{{processing ? "..." : "Utiliser emplacement actuel"}}</button>
+        </form>
+        </div>
+
+    </div>
+</div>
+<div>
+<div id="p" style="position: fixed; width: 100vw; display: none; opacity: 0; height: 100vh; z-index: 2; transition: all 0.4s ease-in-out;" #p>
+    <div id="m" style="position: absolute; width: 60vw; background-color: white; border-radius: 3px; box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;">
+        <img style="position : absolute; right : 1.5vmin; top : 1.5vmin; height: 3.4vmin; width: 3.4vmin; cursor: pointer; z-index : 3;" src="assets/icons/close.png" onclick="closeWdw()">
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <div style="width: 60%;">
+            <div style="font-size: 2.8vmin; margin-top: 5vmin; font-weight: 500; letter-spacing: 1px; text-align: center; color: #318CE7;">Veuillez saisir les champs de votre adresse</div>
+            <form #fm="ngForm">
+            <div style="margin-top: 2vh; height: 18vh;">
+            <label for="dsg"class="lb" style="font-size: 2.8vmin;">Rue, Résidence, autre<span style="color: red;">*</span></label><br>
+            <input id="dsg" class="form-control" style="font-size: 2.8vmin;" [(ngModel)]="dsgg" #dg="ngModel" name="dg"  [class.is-invalid] = "dg.invalid && (dg.dirty || dg.touched || fm.submitted)" spellcheck="false" required>
+            <div *ngIf="dg.errors && (dg.dirty || dg.touched || fm.submitted)">
+                <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "dg.errors?.['required']">Veuillez saisir vos spécificités d'adresse!</small> 
+            </div> 
+            </div>
+            <div style="margin-bottom: 2vmin; height: 18vh;">
+            <label for="codeP" class="lb" style="font-size: 2.8vmin;">Code Postal<span style="color: red;">*</span></label><br>
+            <input id="codeP" style="font-size: 2.8vmin;" type="number" min="1000" max="9999" class="form-control" [(ngModel)]="codePP" name="codeP" #cp="ngModel" [class.is-invalid] = "cp.invalid && (cp.dirty || cp.touched || fm.submitted)" required>
+            <div *ngIf="cp.errors && (cp.dirty || cp.touched || fm.submitted)">
+                <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "cp.errors?.['required']">Veuillez saisir votre code postal!</small> 
+                <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "cp.errors?.['min'] || cp.errors?.['max']">Code postal invalide!</small> 
+            </div> 
+            </div>
+            <div style="height: 18vh;">
+            <label for="rg" class="lb" style="font-size: 2.8vmin;">Région(délégation, localité)<span style="color: red;">*</span></label><br>
+            <input id="rg" style="font-size: 2.8vmin;" pattern="^[^,]*$" class="form-control" [(ngModel)]="rgg" name="rg" #r="ngModel" [class.is-invalid] = "r.invalid && (r.dirty || r.touched || fm.submitted)" spellcheck="false" required>
+            <div *ngIf="r.errors && (r.dirty || r.touched || fm.submitted)">
+                <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "r.errors?.['required']">Veuillez saisir votre région!</small> 
+                <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "r.errors?.['pattern']">Sans virgule!</small> 
+            </div> 
+            </div>
+            <button [disabled] = "fm.invalid" class="btnn" style="border: none; border-radius: 3px; padding: 1.3vmin; margin-top: 1vmin; font-size: 2.8vmin; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" (click)="change()">Changer adresse</button>
+            </form>    
+        </div>
+        </div>
+    </div>
+</div>
+
+<div style="position: relative; z-index: 1; margin-top: 7vmin;" class="wd">
+    <div [class.msg-shh] = "msgF_t" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Type de véhicule manquant!</span></div>
+    <div [class.msg-shh] = "msgF_S" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/checked.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Livraison {{ idLiv }} est en attente d'acceptation!</span></div>
+    <div [class.msg-shh] = "msgF" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  font-size: 3vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Adresse de  destination manquante!</span></div>
+    <div [class.msg-shh] = "msgF_ad" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Veuillez entrer une adresse parmi les suggestions!</span></div>
+    <div [class.msg-shh] = "msgF_d" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Distance nulle non prise en charge!</span></div>
+    <div [class.msg-shh] = "msgF_l" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Livreur non trouvé!</span></div>
+    <div [class.msg-shh] = "msgF_g" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Gouvernorat de destination hors de notre zone de service!</span></div>
+    <div [class.msg-shh] = "msgF_gd" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Gouvernorat de retrait hors de notre zone de service!</span></div>
+    <div [class.msg-shh] = "msgF_pl" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Le livreur n'a plus le privilège de livraison!</span></div>
+    <div [class.msg-shh] = "msgF_gv" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Gouvernorat de localisation hors de notre zone de service!</span></div>
+    <div [class.msg-shh] = "msgF_nv" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg"  style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Vous ne disposez pas de service de géolocalisation dans votre navigateur!</span></div>
+    <div [class.msg-shh] = "msgF_ac" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Le gouvernorat de votre adresse est hors de notre zone de service!</span></div>
+    <div [class.msg-shh] = "msgF_er" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Les types de véhicule ne sont pas disponibles à cause d'un problème de traitement des requêtes au niveau du serveur mais nous nous sommes engagés pour le résoudre. veuillez réessayer plus tard.</span></div>
+    <div [class.msg-shh] = "msgF_e" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Notre serveur rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span></div>
+    <div [class.msg-shh] = "msgF_err" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Le serveur du web service n'a pas pu identifier votre gouvernorat mais nous nous sommes engagés pour résoudre le problème. Veuillez réessayer plus tard.</span></div>
+    <div style="display: flex; align-items: center; justify-content: center;">
+    <div style="width: 70%; position: relative;">
+        <button onclick="tga()" class="bt" style="position: absolute; border : none; background-color: #318CE7; top : -5.5vmin; right: 10%;  border-radius: 2px; padding: 0.45vmin; font-size: 2.8vmin; letter-spacing: 1px; z-index: 0; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">Changer adresse actuelle</button>
+        <form style="display: flex; align-items: center; justify-content: center;" (ngSubmit) = "onSubmit()">
+        <div style="width: 80%; margin-top: 2vmin;">
+        <label class="lb" for="ad-dest" style="font-size: 2.8vmin;">Adresse de destination</label>
+        <div style="position: relative; margin-bottom: 1vmin;">
+        <input class="d-ip form-control" id="ad-dest" [(ngModel)] = "ad" (input)="handleInp($event)" name="adresse" autocomplete="off" (click) = "display($event)" spellcheck="false" placeholder="Rechercher adresse">
+        <ul class="bd" *ngIf="showsgs" style="position: absolute; top: 5.5vh; list-style: none; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; border-top-right-radius: 0; width: 100%;  background-color: white; font-size: 2.8vmin; padding: 0; max-height: 30vh; overflow-y: auto; border-left: solid 1px #dee2e6; border-right: solid 1px #dee2e6;">
+            <li *ngFor="let sg of sgs" class="sgs" (click)="selectAd(sg)">{{ sg.title }}</li>
+        </ul>
+        </div> 
+        <label class="lb" for="type-vh" style="font-size: 2.8vmin;">Type de véhicule</label>
+        <select class="d-ip" id="type-vh" style="font-size: 2.8vmin; border-radius: 5px; border: solid 1px #dee2e6; font-size: 2.5vmin;" [(ngModel)] = "idVehicule" name="idVehicule" #vec = "ngModel">
+            <option value="" hidden></option>
+            <option *ngFor = "let type of types" [value]="type.id" style="font-size: 2.8vmin;">{{ type.type }}</option>
+        </select>
+        <button [disabled] = "processing"  type="submit" class="button" style="border: none; border-radius: 2px; letter-spacing: 1px; margin-top: 3vmin; font-size: 2.8vmin; display: flex; align-items: center; justify-content: center; padding: 0.45vh; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;">{{processing ? "..." : "Rechercher Livreur" }}<img src="assets/icons/recherche.png" style="width: 3.5vmin; height: 3.5vmin; margin-left: 0.4vmin;"></button>
+        </div>
+        </form>
+    </div>
+    </div>
+        
+</div>
+<div style="display: flex; align-items: center; justify-content: center; margin-top: 1vmin; z-index: 1;">
+    <div *ngIf="res"  style="margin-left: 62%; font-size: 2.8vmin; text-decoration: none; color: #454444; letter-spacing: 1px; border: solid 1px #dee2e6; background-color: #f7f7f7; box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; display: flex; align-items: center; justify-content: center; padding: 0.5vmin; border-radius: 2px;"><span style="margin-right: 2vmin;">Trier par tarif</span><img src="assets/icons/downward.png" id="arr" style="height: 3.5vmin; width: 3.5vmin; border: none; cursor: pointer;" onclick="changeImage()" (click) = "sort()" #arr></div>
+</div>
+<div *ngIf ="res" style="display: flex; align-items: center; justify-content: center; margin-top: 0.2vmin; margin-bottom: 1vmin; z-index: 1; width: 80vw;"> 
+            <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; overflow-x: hidden; width: 80%;">
+            <div class="cd" *ngFor ="let livreur of livreurs" style="display: flex; align-items: center; flex-direction: column; border-radius: 2px; justify-content: center; border: solid 1px #dee2e6; margin-right: 1vmin; background-color: #f7f7f7; margin-top: 1vmin; box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; padding: 2vmin;">
+                <div><img *ngIf="livreur.photo" [src]="'data:image/png;base64,' + livreur.photo" style="width: 12vmin; height : 12vmin; border-radius: 100vmin;"><img *ngIf="!livreur.photo && livreur.genre === 'Masculin'" src="assets/images/man.jpg" style="width: 12vmin; height : 12vmin; border-radius: 100vmin; border: solid 0.4vmin;"><img *ngIf="!livreur.photo && livreur.genre === 'Feminin'" src="assets/images/woman.jpg" style="width: 12vmin; height : 12vmin; border-radius: 100vmin; border: solid 0.4vmin;" ></div> 
+                <div style="letter-spacing: 1px; font-size: 2.8vmin; font-weight: bold;  border-radius: 2px;">{{ livreur.prenom }} {{ livreur.nom }}<span style="color :#318CE7; display: flex; align-items: center;"><img src="assets/icons/cash.png" style="width: 3.5vmin; height: 3.5vmin; margin-right: 1vmin;">{{ livreur.tarif * distance}} DT</span><span><img src="assets/icons/delivery.png" style="width: 3.5vmin; height: 3.5vmin; margin-right: 1vmin;">{{ livreur.type }}</span><span style="display: flex; align-items: center; color : #4CBB17; margin-bottom: 1vmin;"><img src="assets/icons/cercle.png" style="width: 2vmin; height: 2vmin; margin-right: 1vmin;">Disponible</span>
+                        <form (ngSubmit)="onSubmitt(livreur.email)">
+                            <button [disabled] = "processing" type="submit" class="btn" style="border: none; letter-spacing: 1px; font-size: 2.8vmin; font-weight: 500; border: solid 0.3vmin; color: #318CE7; padding: 0.5vmin; border-radius: 2px;">{{processing ? "..." : "Demande Livraison"}}</button>
+                        </form>
+                </div>   
+            </div>
+            </div>
+</div>

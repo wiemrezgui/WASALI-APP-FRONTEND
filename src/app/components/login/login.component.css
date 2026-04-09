@@ -1,0 +1,156 @@
+.logo 
+{
+    margin-left: 3.5vmin;  
+    text-decoration: none;
+}
+.nav-link 
+{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 3vmin;
+    margin-right: 10vmin; 
+    font-weight: 500; 
+    padding: 0; 
+}
+#cn 
+{
+    border-bottom: solid #00FF00 0.4vmin; 
+    color: black;  
+}
+.title 
+{
+    font-size: 5.5vmin; 
+    margin-bottom: 3.5vmin; 
+    font-weight: 600;
+}
+.wd 
+{
+    width: 65vmin;  
+}
+.button  
+{
+    width: 65vmin;
+    height: 6.5vmin; 
+    border: none; 
+    font-size: 3vmin; 
+    background-color: #318CE7;   
+}
+.button:disabled 
+{
+    background-color: #ccc;
+}
+.button:hover
+{
+    opacity: 0.97; 
+}
+.div-lg 
+{
+    height: 66vh; 
+}
+input 
+{
+    height: 6.5vmin;   
+    font-size: 3vmin;   
+}
+::placeholder 
+{
+    font-size: 3.4vmin; 
+    letter-spacing: 1px;
+}
+.mg 
+{
+    margin-bottom: 2.5vmin;
+}
+.sh 
+{
+    font-size: 3.7vmin; 
+    width: 3vmin; 
+    height: 3vmin;
+    cursor: pointer; 
+}
+.msg-hd 
+{
+    top: -100vmin; 
+    z-index: 2;
+    left: 1vh;
+}
+.msg-hdd 
+{
+    top: -200vmin; 
+    z-index: 2;
+    left: 1.5vh;
+}
+.msg-sh 
+{
+    top: -9vmin; 
+}
+.msg-shh 
+{
+    top: -9vmin; 
+}
+@media screen and (min-width : 499px){
+    .msg-sh 
+    {
+        left: 7vh;
+    }
+}
+.msg 
+{
+    font-size: 1.7vmin;
+}
+.msgBg 
+{
+    font-size: 3vmin;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+.icBg 
+{
+    width: 2.4vmin; 
+    height: 2.4vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .msgBg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+    .icBg 
+    {
+        width: 3.5vmin; 
+        height: 3.5vmin;
+    }
+}
+.pres 
+{
+    height: 80vh;
+}
+@media screen and (max-width : 1130px){
+    .div-lg 
+    {
+        flex-direction: column;
+    }
+    .pres 
+    {
+        height: 100vh;
+    }
+}
+#password::-ms-reveal,
+      #password::-ms-clear {
+        display: none;
+      }
+
+
+
+
+

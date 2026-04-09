@@ -1,0 +1,53 @@
+<nav class="navbar">
+
+    <a class="logo" style="display: flex; align-items: center; position: relative;">
+      <img src="../assets/images/Wassali_Logo.png" style="width: 9vmin; height: 9vmin; cursor: pointer;" alt="Logo" onclick="navigateToLogin()">
+      <span style="left: 10vmin; font-weight: 600; color: var(--bc); font-size: 6.2vmin; letter-spacing: 3px; padding-bottom: 1.7vmin; position: absolute;"><span style="cursor: pointer;" onclick="navigateToLogin()">WASSA<span style="color: var(--lc);">LI</span></span></span> 
+    </a>
+
+    
+</nav>
+<div style="height: 80vh; position: relative;">
+        <div [class.msg-shh] = "msgF" class="msg-hdd msgBg" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span style="position: absolute;  font-size: 3vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Veuillez entrer vos tarifs préférés de tous les intervalles!</span></div>
+        <div [class.msg-shh] = "msgF_nm" class="msg-hdd msgBg" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span style="position: absolute;  font-size: 3vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Tous les tarifs doivent être compris entre 0.01 DT et 1 milliard!</span></div>
+        <div [class.msg-shh] = "msgF_vh" class="msg-hdd msgBg" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span style="position: absolute;  font-size: 3vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin;">Type de véhicule non choisie!</span></div>
+        <div [class.msg-shh] = "msgF_em" class="msg-hdd msgBg" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span style="position: absolute;  font-size: 3vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin;">Email déjà utilisé!</span></div>
+        <div [class.msg-shh] = "msgF_e" class="msg-hdd msg" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span style="position: absolute;  font-size: 1.7vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin;">Notre serveur rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span></div>
+        <div [class.msg-shh] = "msgF_er" class="msg-hdd msg" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span style="position: absolute;  font-size: 1.7vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin;">Les intervalles de distance ne sont pas disponible à cause d'un problème de traitement des requêtes au niveau du serveur mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span></div>
+        <div [class.msg-shh] = "msgF_err" class="msg-hdd msg" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span style="position: absolute;  font-size: 1.7vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin;">Les types de véhicule ne sont pas disponible à cause d'un problème de traitement des requêtes au niveau du serveur mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span></div>
+        <div [class.msg-shh] = "msgF_cin" class="msg-hdd msgBg" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span style="position: absolute;  font-size: 1.7vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin;">Copie de CIN manquante!</span></div>
+        <div style="display: flex; align-items: center; justify-content: center; height: 68vh; flex-direction: column;">
+        <h3 class="title" style="color: var(--bc); font-size : 2.9vmin; margin-top: 10vh; height: 4vh; width: 80%; text-align: center; font-weight: bold;">Salut {{ prenom }}!</h3>
+        <div style="font-size: 2.8vmin; margin-bottom: 3vmin; letter-spacing: 1px; text-align: center; width: 60%; height: 6vh;">Veuillez entrer vos tarifs préférés, votre type de véhicule et une copie de votre CIN</div>
+        <form style="width: 70%;" (ngSubmit) = "onSubmit()" novalidate>
+            <div style="border: solid 1px #318CE7; margin-bottom: 2vh; border-radius: 2px;">
+            <table style="text-align: center; width: 100%;">
+                <thead>
+                    <tr style="height : 6vh;">
+                        <th style="border: solid 1.5px #318CE7; width: 50%; font-size: 3vmin; font-weight: 500; letter-spacing: 1px;">Intervalle de distance<span style="color: #318CE7;"> (km)</span></th>
+                        <th style="width: 50%; border: solid 1.5px #318CE7; font-size: 3vmin; font-weight: 500; letter-spacing: 1px;">Tarif demandé par km<span style="color: #318CE7;"> (DT)</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = "let intDist of intsDist; let i = index" style="height : 6vh;">
+                        <td style="font-size: 3vmin; width: 50%; border: solid 1.5px #318CE7; font-weight: 500;">[{{ intDist.borneGauche }},{{ intDist.borneDroite }}]</td>
+                        <td style="width: 50%; border: solid 1.5px #318CE7; padding: 1vmin;"><input  type="number"  min="0.01" max="1000000" step="0.01" name="input" class="ip" style="width: 100%; height: 6vh; font-size: 2.7vmin;" [(ngModel)] = "inpts[i]" placeholder="Tarif*" autocomplete="off"></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <label for="dp-vc" style="font-size: 2.8vmin; letter-spacing: 1px; margin-bottom: 0.2vmin;">Type Véhicule<span style="color: red;">*</span></label>
+            <div class="dv-hg">
+                <select style="cursor: pointer; font-size: 2.8vmin; width: 100%; border: solid 1px #dee2e6; border-radius: 2px; height: 6vmin; border: solid 2.2px #318CE7; font-size: 2.5vmin;" id="dp-vc"  [(ngModel)] = "vehicule" name="vehicule" #vec="ngModel">
+                    <option value="" hidden></option>
+                    <option *ngFor = "let type of types" style="font-size: 2.8vmin;" [value]="type.type">{{ type.type }}</option>
+                </select> 
+            </div>
+            <label for="CIN" style="font-size: 2.8vmin;">Copie CIN<span style="color: red;">*</span></label>
+            <input type="file" class="form-control" id="CIN" (change)="capturer($event)" accept="image/*" name="CIN" style="font-size: 2.8vmin; border-radius: 5px; font-size: 2.8vmin; margin-bottom: 2.5vh;">
+            <div style="text-align: center;">
+                <button [disabled] = "processing" class="button" type="submit" style="color: black; font-weight: 600; border-radius: 3px; letter-spacing: 1px; padding: 1.6vmin; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ processing ? "Attendez..." : "Créer un nouveau compte"}}</button>
+            </div>
+        </form>
+        </div>
+</div>

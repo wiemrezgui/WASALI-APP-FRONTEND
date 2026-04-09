@@ -1,0 +1,84 @@
+.link 
+{
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    color: black;   
+    font-size: 2.8vmin;  
+    cursor: pointer;  
+}
+#nv 
+{
+    position: relative;
+}
+#photo
+{
+    position: absolute;
+    right: 10vh;
+    bottom: 0.6vh;
+}
+#config 
+{
+    position: absolute;
+    right: 23vh;
+}
+#logOut 
+{
+    position: absolute;
+    right: 3vh;
+}
+.ph 
+{
+    width: 6vmin; 
+    height: 6vmin;
+}
+.cr 
+{
+    bottom: 0.1vmin; 
+    right: 0.4vmin;
+}
+.nav-item
+{
+    margin-right: 6vmin;
+}
+@media screen and (max-width : 1000px) { 
+    .cr 
+    {
+        bottom: 0.4vmin; 
+        right: 0.6vmin;
+    }
+    .nav-item
+    {
+        margin-right: 0;
+    }
+    ul 
+    {
+        width: 100%; 
+        flex-wrap: wrap; 
+    }
+    .nav-item 
+    { 
+        width: 100vw;
+    }
+    #photo
+    {
+        position: static;
+    }
+    #logOut 
+    {
+        position: static;
+    }
+    #nv 
+    {
+        position: static;
+    }
+    .ph 
+    {
+        width: 8vmin; 
+        height: 8vmin;
+    }
+}
+.active-link 
+{
+   border-bottom: solid 0.42vmin #00FF00;
+}

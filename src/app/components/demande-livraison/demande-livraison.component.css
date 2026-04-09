@@ -1,0 +1,190 @@
+.d-ip 
+{
+    height: 5.5vh; 
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; 
+}
+.lb 
+{
+    margin-bottom: 1vmin; 
+    letter-spacing: 1px;
+}
+input,select 
+{
+    font-size: 2.5vmin;
+}
+.bd 
+{
+    border-bottom: solid 1px #dee2e6;
+}
+ul li:not(:last-child) 
+{
+    border-bottom: solid 1px #dee2e6;
+}
+.sgs 
+{
+    cursor: pointer; 
+    padding: 0.7vmin; 
+}
+.sgs:hover 
+{
+    background-color: #e9ecef;
+}
+#ad-dest 
+{
+    outline: none;
+}
+.msg-hdd 
+{
+    top: -180vmin;
+}
+.msg-shh 
+{
+    top: -12vmin; 
+}
+.wd 
+{
+    width: 80vw;
+}
+.bt 
+{
+    right: 24.5vw;
+}
+@media screen and (max-width : 1000px) { 
+    .wd 
+    {
+        width: 90vw;    
+    }
+    .bt 
+    {
+        right : 28.5vw;
+    }
+}
+@media screen and (max-width : 500px) { 
+    #ad-dest 
+    {
+        font-size: 3vmin;
+    }
+}
+.bt:hover
+{
+    opacity: 0.97; 
+}
+.button 
+{
+    background-color: #00FF00;
+}
+.button:disabled 
+{
+    color: black;
+}
+#pp
+{
+    display: none; 
+    position: fixed; 
+    width: 100vw; 
+    height: 100vh; 
+    z-index: 2; 
+    transition: all 0.4s ease-in-out; 
+    opacity : 0; 
+}
+#ms 
+{
+    border-radius: 5px;
+    position: absolute;
+    width: 60vw;
+    height: 35vh;
+    left: 12vw; 
+    top : 17vh; 
+    background-color: white;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+    z-index: 2; 
+}
+::placeholder 
+{
+    font-size: 2.8vmin; 
+    letter-spacing: 1px;
+}
+#m
+{
+    top : -6.5vh; 
+    left: 12.2vw; 
+    height: 80vh;
+}
+@media screen and (max-width : 1000px) {
+    #m
+    {
+        left: 16vw;
+        top : -22vh; 
+    }
+    #ms 
+    {
+        left: 15vw;
+    }
+ 
+}
+.lb 
+{
+    font-size: 2.2vmin;
+    margin-bottom: 0.5vmin;
+}
+.btn:disabled 
+{
+    opacity: 1;
+}
+.btnn:hover
+{
+    opacity: 0.97; 
+}
+.btnn:disabled 
+{
+    background-color: #ccc;
+    color: black;
+}
+.btnn:disabled:hover 
+{
+    opacity: 1;
+}
+.btnn 
+{
+    background-color: #318CE7;
+}
+.msg 
+{
+    font-size: 1.7vmin;
+}
+.msgBg 
+{
+    font-size: 3vmin;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+.icBg 
+{
+    width: 2.4vmin; 
+    height: 2.4vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .msgBg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+    .icBg 
+    {
+        width: 3.5vmin; 
+        height: 3.5vmin;
+    }
+}
+

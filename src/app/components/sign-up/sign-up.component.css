@@ -1,0 +1,136 @@
+.logo 
+{
+    margin-left: 3.5vmin;  
+    text-decoration: none;
+}
+.nav-link 
+{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 3vmin;
+    margin-right: 10vmin; 
+    font-weight: 500; 
+    padding: 0; 
+}
+#in 
+{
+    color: black; 
+    border-bottom: solid #00FF00 0.4vmin;
+}
+.title 
+{
+    font-size: 5.5vmin; 
+    margin-bottom: 3.5vmin; 
+    font-weight: 600;
+}
+.wd 
+{
+    width: 90vmin;  
+}
+.button  
+{
+    width: 28vmin; 
+    border: none; 
+    font-size: 3vmin;  
+    padding: 0.9vmin;  
+    background-color: #318CE7;
+}
+.button:disabled 
+{
+    background-color: #ccc;
+}
+.button:hover
+{
+    opacity: 0.97;
+}
+
+.div-lg 
+{
+    height: 70vh; 
+}
+input, select 
+{
+    height: 6vmin;          
+    border-radius: 5px; 
+    font-size: 2.5vmin;
+}
+
+.cs-up
+{
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-radius: 3px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+.cs-up:hover 
+{
+    background-color: #e9ecef;
+}
+label 
+{
+    color: black;
+}
+.sh 
+{
+
+    font-size: 3.7vmin; 
+    width: 2.5vmin; 
+    height: 2.5vmin;
+    cursor: pointer; 
+}
+.dv-hg 
+{
+    height: 10vh;
+}
+
+.msg-hd 
+{
+    top: -100vmin;
+}
+.msg-sh 
+{
+    top: -17vmin; 
+}
+.msg 
+{
+    font-size: 1.7vmin;
+}
+.msgBg 
+{
+    font-size: 3vmin;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+.icBg 
+{
+    width: 2.4vmin; 
+    height: 2.4vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .msgBg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+    .icBg 
+    {
+        width: 3.5vmin; 
+        height: 3.5vmin;
+    }
+}
+#et-ph 
+{
+    overflow-wrap: break-word;
+}

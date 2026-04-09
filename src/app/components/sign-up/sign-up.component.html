@@ -1,0 +1,148 @@
+<nav class="navbar">
+
+    <a class="logo" style="display: flex; align-items: center; position: relative;">
+      <img src="../assets/images/Wassali_Logo.png" style="width: 9vmin; height: 9vmin; cursor: pointer;" alt="Logo">
+      <span style="left: 10vmin; font-weight: 600; color: var(--bc); font-size: 6.2vmin; letter-spacing: 3px; padding-bottom: 1.7vmin; position: absolute;"><span style="cursor : pointer;" onclick="navigateToLogin()">WASSA<span style="color: var(--lc);">LI</span></span></span> 
+    </a>
+
+
+    
+
+    <ul class="navbar-nav d-flex flex-row">
+      <li class="nav-item">
+          <a class="nav-link" href="/connexion">Se Connecter</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="in" href="/inscription">S'Inscrire</a>
+      </li>
+    </ul>
+    
+</nav>
+
+<div class="div-lg" style="display: flex; justify-content: center; align-items: center; margin-top: 10vh; position: relative;">
+    <span [class.msg-sh] = "msgF_em" class="msg-hd msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Email déjà utilisé!</span>
+    <span [class.msg-sh] = "msgF_se" class="msg-hd msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Limite des sessions avec ce mail atteinte!</span>
+    <span [class.msg-sh] = "msgF_e" class="msg-hd msg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Notre serveur rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span>
+    <span [class.msg-sh] = "msgF_r" class="msg-hd msg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Les rôles ne sont pas disponibles à cause d'un problème de traitement des requêtes au niveau du serveur mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span>
+    <form class="wd" #fm="ngForm" (ngSubmit)= "onSubmit()" novalidate>
+        <h3 class="text-center title" style="color: var(--bc)">S'Inscrire</h3>
+        <div class="text-center" style="font-size: 2.9vmin; margin-bottom: 2.5vmin; letter-spacing: 1px;">Vous avez déjà un compte? <a style="font-weight: 600; color: black; text-decoration: none;" href="/connexion">Se Connecter</a></div>
+        <div class="mg-dv" style="display: flex; align-items: center;">
+            <span style="width: 49%; margin-right: 2%;"><label for="nm" style="font-size: 3vmin; letter-spacing: 1px;">Nom<span style="color: red;">*</span></label></span>
+            <span><label for="pm" style="font-size: 3vmin; letter-spacing: 1px;">Prénom<span style="color: red;">*</span></label></span>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <div class="dv-hg" style="width: 49%; margin-right: 2%;">
+                <input type="text" class="form-control" style="font-size: 2.8vmin;" id="nm" [(ngModel)] = "user.nom" name="nom" #nom = "ngModel" [class.is-invalid] = "nom.invalid && (nom.dirty || nom.touched || fm.submitted)" pattern=".{3,40}" autocomplete="on" spellcheck="false" required> 
+                <div *ngIf="nom.errors && (nom.dirty ||nom.touched || fm.submitted)">
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "nom.errors?.['required']">Veuillez saisir votre nom!</small> 
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "nom.errors?.['pattern']">Longueur entre 3 et 40 charactères!</small>
+                </div> 
+            </div>
+    
+            <div class="dv-hg" style="width: 49%;">
+                <input type="text" class="form-control" id="pm" style="font-size: 2.8vmin;" [(ngModel)] = "user.prenom" name="pnm" #pnm = "ngModel" [class.is-invalid] = "pnm.invalid && (pnm.dirty || pnm.touched || fm.submitted)" pattern=".{3,40}" autocomplete="on" spellcheck="false" required>
+                <div *ngIf="pnm.errors && (pnm.dirty || pnm.touched || fm.submitted)">
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "pnm.errors?.['required']">Veuillez saisir votre prénom!</small> 
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "pnm.errors?.['pattern']">Longueur entre 3 et 40 charactères!</small>
+                </div> 
+            </div>
+        </div>
+
+        <div class="mg-dv" style="display: flex; align-items: center;">
+            <span style="width: 49%; margin-right: 2%;"><label for="em" style="font-size: 3vmin; letter-spacing: 1px;">Email<span style="color: red;">*</span></label></span> 
+            <span><label for="password" style="font-size: 3vmin; letter-spacing: 1px;">Mot de passe<span style="color: red;">*</span></label></span>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <div class="dv-hg" style="width: 49%; margin-right: 2%;">
+                <input type="text" class="form-control" style="font-size: 2.8vmin;" id="em" name="email" pattern="(?=.{1,256}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" [(ngModel)] = "user.email" #email = "ngModel" [class.is-invalid] = "email.invalid && (email.dirty || email.touched || fm.submitted)" autocomplete="on" spellcheck="false" required>
+                <div *ngIf="email.errors && (email.dirty || email.touched || fm.submitted)">
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "email.errors?.['required']">Veuillez saisir votre email!</small> 
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "email.errors?.['pattern']">Email invalide!</small>
+                </div> 
+            </div>
+    
+            <div class="dv-hg" style="width: 49%;">
+                <div style="display: flex; align-items: center;">
+                    <input type="password" id="password" class="form-control" name="password" style="width: 89.5%; border-top-right-radius: 0; border-bottom-right-radius: 0; font-size: 2.8vmin;" pattern=".{8,40}" [(ngModel)] = "user.password" #password = "ngModel" [class.is-invalid] = "password.invalid && (password.dirty || password.touched || fm.submitted)" spellcheck="false" required>
+                <span  style="border: solid 1px #dee2e6; height: 6vmin; width: 9.5%; border-top-right-radius: 5px; border-bottom-right-radius: 5px; display: flex; align-items: center; justify-content: center;" ><img class="sh" onclick="showPassword()" src="assets/icons/visibility_on.png"></span>
+                </div>
+                <div *ngIf="password.errors && (password.dirty || password.touched || fm.submitted)">
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "password.errors?.['required']">Veuillez saisir votre mot de passe!</small> 
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "password.errors?.['pattern']">Longueur entre 8 et 40 chractères!</small>
+                </div>
+                 
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <span style="width: 49%; margin-right: 2%;"><label for="dp-rl" style="font-size: 3vmin;  letter-spacing: 1px;">Rôle<span style="color: red;">*</span></label></span>
+            <span><label for="genre" style="font-size: 3vmin; letter-spacing: 1px; width: 49%;">Genre<span style="color: red;">*</span></label></span>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+
+            <div class="dv-hg" style="width: 49%; margin-right: 2%; position: relative;">
+                <select style="cursor: pointer; width: 100%; border: solid 1px #dee2e6;" id="dp-rl" [(ngModel)] = "user.role" name="role" #role="ngModel" required>
+                    <option value="" hidden></option>
+                    <option *ngFor = "let role of roles" [value]="role.role" style="font-size: 2.8vmin;">{{ role.role }}</option>
+                </select> 
+                <small style="font-size: 2.8vmin;" class="text-danger" [class.d-none] = "role.valid || (role.untouched && !fm.submitted)">Veuillez choisir votre rôle!</small>
+            </div>
+            
+
+            <div class="dv-hg" style="width: 49%; position: relative;">
+                <select style="font-size: 2.8vmin; cursor: pointer; width: 100%; border: solid 1px #dee2e6;" id="genre" name="genre" #genre="ngModel" [(ngModel)]="user.genre"  required>
+                    <option style="font-size: 2.8vmin;" value="" hidden selected></option>
+                    <option style="font-size: 2.8vmin;" value="Masculin">Masculin</option>
+                    <option style="font-size: 2.8vmin;" value="Feminin">Féminin</option>
+                </select>
+                <small style="font-size: 2.8vmin;" class="text-danger" [class.d-none] = "genre.valid || (genre.untouched && !fm.submitted)">Veuillez choisir votre genre!</small>
+            </div>
+    
+        </div>
+
+        <div class="mg-dv" style="display: flex; align-items: center;">
+            <span style="width: 49%; margin-right: 2%;"><label for="file" style="font-size: 3vmin; letter-spacing: 1px;">Photo</label></span>
+            <span><label for="tel" style="font-size: 3vmin; letter-spacing: 1px;">Téléphone<span style="color: red;">*</span></label></span>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            
+            
+            <div class="dv-hg" style="width: 49%; margin-right: 2%;">
+                
+                <label style="height: 6vmin; font-size: 2.5vmin;" class="cs-up form-control" for="file">
+                    <input type="file"  id="file" style="display: none;" onchange="updateNom(this)" (change)="capturer($event)" accept="image/*" name="file"> 
+                    <span id="et-ph" style="text-align: center; font-size: 2.5vmin; width: 100%;">Chosir Photo</span>
+                </label>
+                
+
+            </div>
+            <div class="dv-hg" style="width: 49%;">
+                <input type="text" pattern="[0-9]{8}" name="tel" style="font-size: 2.8vmin;" #tel="ngModel"  class="form-control" id="tel" [(ngModel)] = "user.tel" [class.is-invalid] = "tel.invalid && (tel.touched || tel.dirty || fm.submitted)" autocomplete="on" spellcheck="false" required> 
+                <div *ngIf="tel.errors && (tel.touched || tel.dirty || fm.submitted)">
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "tel.errors?.['required']">Veuillez saisir votre téléphone!</small> 
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "tel.errors?.['pattern']">Téléphone invalide!</small>
+                </div>
+            </div>
+        </div>
+
+        
+        <div style="text-align: center; margin-top: 0.5vmin;">
+            <button [disabled] = "processing" class="button" type="submit" style="color: black; font-weight: 600; border-radius: 3px; letter-spacing: 1px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ processing ? "Attendez... " : "Continuer"}}</button>
+        </div>
+
+    </form>
+    
+</div>
+
+
+
+
+
+
+
+

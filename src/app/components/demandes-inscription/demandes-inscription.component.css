@@ -1,0 +1,107 @@
+.wrapper 
+{
+    width: 80vw; 
+}
+.cin 
+{
+    width: 60%;
+}
+.img 
+{
+    height: 20vh;
+}
+@media screen and (max-width : 1000px) {
+    .wrapper 
+    {
+        width: 94vw;
+    }
+    .cin 
+    {
+        width: 100%;
+    }
+}
+.th 
+{
+    text-align: center;
+    font-size: 2.5vmin; 
+    padding: 1vmin; 
+}
+#dts 
+{
+    display: none;
+}
+#cin 
+{
+    display: none;
+}
+tr:nth-of-type(odd)
+{
+    background-color: #edf3fa; 
+}
+tr:nth-of-type(even) 
+{
+    background-color: white;
+}
+.imgs 
+{
+    width: 3.5vmin; 
+    height: 3.5vmin;
+}
+#ms 
+{
+    left: 23.5vw; 
+    height: 70vh;
+    top : 8vh;
+    width: 35vw;
+}
+.li 
+{
+    margin-bottom: 1vh;
+}
+@media screen and (max-width : 1000px) {
+    #ms 
+    {
+        left: 23.5vw;
+        top : -32vh;
+        width: 45vw;
+    }
+    .li 
+    {
+        margin-bottom: 3vh;
+    }
+}
+@media screen and (max-width : 400px) {
+    #ms 
+    {
+        top : -28vh;
+    }
+}
+.msg-hdd 
+{
+    top: -180vmin;
+}
+.msg-shh 
+{
+    top: -5vmin; 
+}
+.msg 
+{
+    font-size: 1.7vmin;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+}
+

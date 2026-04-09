@@ -1,0 +1,87 @@
+<div id="pp" style="position: fixed; width: 100vw; height: 100vh; display: none; opacity: 0; z-index: 2; transition: all 0.4s ease-in-out;" #pp>
+    <div id="ms" style="position: absolute; width: 60vw; top : 9vh; background-color: white; border-radius: 3px; box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;">
+        <img style="position : absolute; right : 1.5vmin; top : 1.5vmin; height: 3.4vmin; width: 3.4vmin; cursor: pointer; z-index : 3;" src="assets/icons/close.png" onclick="closeWindow()">
+        <div style="display: flex; align-items: center; justify-content: center;">
+            <div style="width: 80%;">
+            <div style="font-size: 3vmin; margin-top: 6vh; font-weight: 500; letter-spacing: 1px; text-align: center; color: #318CE7; height: 5vh;">Veuillez saisir les champs de votre adresse</div>
+            <form #fm="ngForm">
+            <div style="margin-top: 5vmin; height: 15vh;">
+            <label for="dsg"class="lb">Rue, Résidence, autre<span style="color: red;">*</span></label><br>
+            <input id="dsg" class="form-control" [(ngModel)]="dsg" #dg="ngModel" name="dg"  [class.is-invalid] = "dg.invalid && (dg.dirty || dg.touched || fm.submitted)" spellcheck="false" autocomplete="on" required>
+            <div *ngIf="dg.errors && (dg.dirty || dg.touched || fm.submitted)">
+                <small style="font-size: 2.7vmin;" class="text-danger" *ngIf = "dg.errors?.['required']">Veuillez saisir vos spécificités d'adresse!</small> 
+            </div> 
+            </div>
+            <div style="margin-bottom: 2vmin; height: 15vh;">
+            <label for="codeP" class="lb">Code Postal<span style="color: red;">*</span></label><br>
+            <div>
+            <input id="codeP" type="number" min="1000" max="9999" class="form-control" [(ngModel)]="codeP" name="codeP" #cp="ngModel" [class.is-invalid] = "cp.invalid && (cp.dirty || cp.touched || fm.submitted)" required>
+            <div *ngIf="cp.errors && (cp.dirty || cp.touched || fm.submitted)">
+                <small style="font-size: 2.7vmin;" class="text-danger" *ngIf = "cp.errors?.['required']">Veuillez entrer votre code postal!</small> 
+            </div> 
+            </div>
+            </div>
+            <div style="height: 15vh;">
+            <label for="rg" class="lb">Région(délégation, localité)<span style="color: red;">*</span></label><br>
+            <input id="rg" class="form-control" pattern="^[^,]*$" [(ngModel)]="rg" name="rg" #r="ngModel" [class.is-invalid] = "r.invalid && (r.dirty || r.touched || fm.submitted)" spellcheck="false" autocomplete="on" required>
+            <div *ngIf="r.errors && (r.dirty || r.touched || fm.submitted)">
+                <small style="font-size: 2.7vmin;" class="text-danger" *ngIf = "r.errors?.['required']">Veuillez saisir votre région!</small> 
+                <small style="font-size: 2.7vmin;" class="text-danger" *ngIf = "r.errors?.['pattern']">Sans virgule!</small> 
+            </div> 
+            </div>
+            <div style="text-align: center;">
+            <button class="btnn" [disabled]="processing" style="border: none; border-radius: 3px; padding: 1.3vmin; margin-top: 1vmin; font-size: 2.7vmin; letter-spacing: 1px; color: black; font-weight: 600; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" (click)="create()">{{ processing ? "Attendez..." : "Créer un nouveau compte"}}</button>
+            </div>
+            </form>    
+        </div>
+        </div>
+    </div>  
+</div>
+
+<nav class="navbar">
+
+    <a class="logo" style="display: flex; align-items: center; position: relative;">
+      <img src="../assets/images/Wassali_Logo.png" style="width: 9vmin; height: 9vmin; cursor: pointer;" alt="Logo" onclick="navigateToLogin()">
+      <span style="left: 10vmin; font-weight: 600; color: var(--bc); font-size: 6.2vmin; letter-spacing: 3px; padding-bottom: 1.7vmin; position: absolute;"><span style="cursor: pointer;" onclick="navigateToLogin()">WASSA<span style="color: var(--lc);">LI</span></span></span> 
+    </a>
+
+    
+</nav>
+
+<div class="div-lg" style="display: flex; justify-content: center; align-items: center; flex-direction: column; position: relative; margin-top: 1vh;">
+    <span [class.msg-sh] = "msgF" class="msg-hd msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Adresse manquante!</span>
+    <span [class.msg-sh] = "msgF_ad" class="msg-hd msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;" ><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Veuiller entrer une adresse parmi les suggestions!</span>
+    <span [class.msg-sh] = "msgF_gv" class="msg-hd msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Gouvernorat de localisation hors de notre zone de service!</span>
+    <span [class.msg-sh] = "msgF_em" class="msg-hd msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Email déjà utilisé!</span>
+    <span [class.msg-sh] = "msgF_e" class="msg-hd msg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Notre serveur rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span>
+    <span [class.msg-sh] = "msgF_er" class="msg-hd msg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="ic" style=" margin-right: 0.5vmin; margin-top: 0.2vmin;">Le serveur du web service rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span>
+    <span [class.msg-sh] = "msgF_err" class="msg-hd msg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Le serveur du web service n'a pas pu identifier votre gouvernorat mais nous nous sommes engagés pour résoudre le problème. Veuillez réessayer plus tard.</span>
+    <span [class.msg-sh] = "msgF_nv" class="msg-hd msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Vous ne disposez pas de service de géolocalisation dans votre navigateur!</span>
+    <div class="wd" style="border: solid 2px #318CE7;">
+    <form #fm="ngForm" (ngSubmit) = "onSubmit()" style="border-radius: 2px; padding: 5vmin;" novalidate>
+        <h3 class="text-center title" style="color: var(--bc); font-size : 3.5vmin; font-weight: bold;">Salut {{ prenom }}!</h3>
+        <div style="font-size: 3vmin; margin-bottom: 5vmin; letter-spacing: 1px; text-align: center;"><button [disabled]="processing" style="color : #00FF00; text-decoration: underline; border: none; background-color: white;" (click)="getLocation()"><img src="assets/icons/navigation.png" style="height: 2.5vmin; width: 2.5vmin; margin-right: 1vmin;">Utiliser votre emplacement actuel</button>ou rechercher votre adresse</div>
+        <div style="margin-bottom: 5vmin;">
+            <label for="ad" style="font-size: 3.2vmin; letter-spacing: 1px; display: block; margin-bottom: 0.2vmin;">Adresse<span style="color: red;">*</span></label>
+            <div>
+            <div style="position: relative;">
+            <input id="ad" class="form-control" style="height: 6.5vmin;" type="text" [(ngModel)] = "ad" (input)="handleInp($event)" name="adresse" autocomplete="off" (click) = "display($event)" spellcheck="false" placeholder="Rechercher adresse">
+            <ul class="bd" *ngIf="showsgs" style="position: absolute; top: 6.5vmin; list-style: none; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; width: 100%; z-index: 1; background-color: white; font-size: 2.8vmin; padding: 0; max-height: 30vh; overflow-y: auto; border-left: solid 1px #dee2e6; border-right: solid 1px #dee2e6;">
+                <li *ngFor="let sg of sgs" class="sgs" (click)="selectAd(sg)">{{ sg.title }}</li>
+            </ul> 
+            </div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <button [disabled] = "processing" class="button" type="submit" style="color: black; font-weight: 600; border-radius: 3px; letter-spacing: 1px; padding: 1.4vmin; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ processing ? "Attendez..." : "Créer un nouveau compte" }}</button>
+        </div>
+    </form>
+    </div>
+       
+    
+</div>
+
+
+
+

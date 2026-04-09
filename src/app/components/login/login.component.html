@@ -1,0 +1,66 @@
+<nav class="navbar">
+
+    <a class="logo" style="display: flex; align-items: center; position: relative;">
+      <img src="../assets/images/Wassali_Logo.png" style="width: 9vmin; height: 9vmin; cursor: pointer;" alt="Logo" onclick="navigateToLogin()">
+      <span style="left: 10vmin; font-weight: 600; color: var(--bc); font-size: 6.2vmin; letter-spacing: 3px; padding-bottom: 1.7vmin; position: absolute;"><span style="cursor: pointer;" onclick="navigateToLogin()">WASSA<span style="color: var(--lc);">LI</span></span></span> 
+    </a>
+
+
+    
+
+    <ul class="navbar-nav d-flex flex-row">
+      <li class="nav-item">
+          <a class="nav-link" style="outline: none;" id="cn" href="/connexion">Se Connecter</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/inscription">S'Inscrire</a>
+      </li>
+    </ul>
+    
+</nav>
+
+<div class="div-lg" style="display: flex; align-items: center; margin-top: 7vmin;">
+    
+    <div class="wd" style="position: relative; margin-left: 2%; margin-right: 4%; margin-bottom: 3vh;">
+        <span [class.msg-sh] = "msgF_em" class="msg-hdd msgBg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Connexion échouée avec ces infos!</span>
+        <span [class.msg-sh] = "msgF_v" class="msg-hdd msgBg" style="position: absolute; font-size: 3vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Inscription non encore validée!</span>
+        <span [class.msg-sh] = "msgF_ses" class="msg-hd msg" style="position: absolute; font-size: 1.7vmin; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">{{ msgSession.msg }}</span>
+        <span [class.msg-shh] = "msgF_e" class="msg-hd msg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05); transition: 2s;"><img class="ic" src="assets/images/cross.png" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Notre serveur rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span>
+        <form #fm="ngForm" (ngSubmit) = "onSubmit()" novalidate>
+            <h3 class="text-center title" style="color: var(--bc)">Se Connecter</h3>
+            <div class="text-center" style="font-size: 2.9vmin; margin-bottom: 3vmin; letter-spacing: 1px;">Vous n'avez pas de compte? <a style="font-weight: 600; color: black; text-decoration: none; outline: none;" href="/inscription">S'Inscrire</a></div>
+            <div class="mg">
+                <input type="text" class="form-control" pattern="(?=.{1,256}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" placeholder="Email" [(ngModel)] = "user.email" name="email" #email = "ngModel" [class.is-invalid] = "email.invalid && (email.dirty || email.touched || fm.submitted)" autocomplete="on" spellcheck="false" required> 
+                <div *ngIf="email.errors && (email.dirty || email.touched || fm.submitted)">
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "email.errors?.['required']">Veuillez saisir votre Email!</small> 
+                    <small style="font-size: 2.8vmin;" class="text-danger" *ngIf = "email.errors?.['pattern']">Email invalide!</small>
+                </div>
+            </div>
+    
+        
+            <div class="mg">
+                <div style="display: flex; align-items: center;">
+                    <input type="password" id="password" class="form-control" style="width: 92%; border-top-right-radius: 0; border-bottom-right-radius: 0;" placeholder="Mot de passe" [(ngModel)] = "user.password" name="password" #password = "ngModel" [class.is-invalid] = "password.invalid && (password.dirty || password.touched || fm.submitted)" spellcheck="false" required>
+                    <span  style="border: solid 1px #dee2e6; height: 6.5vmin; width: 8.5%; border-top-right-radius: 5px; border-bottom-right-radius: 5px; display: flex; align-items: center; justify-content: center;" ><img  class="sh" onclick="showPassword()" src="assets/icons/visibility_on.png"></span>
+                </div>
+                <small style="font-size: 2.8vmin;" class="text-danger" [class.d-none] = "password.valid || (password.pristine && password.untouched && !fm.submitted)">Veuillez saisir votre mot de passe!</small>
+                
+            </div> 
+            
+    
+            <button [disabled] = "processing" class="button" type="submit" style="color: black; font-weight: 600; margin-bottom: 4vmin; border-radius: 3px; letter-spacing: 1px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">{{ processing ? "Attendez..." : "Connexion"}}</button>
+    
+            <div class="text-center" style="font-size: 2.9vmin; letter-spacing: 1px;"><a style="font-weight: 600; color: black; text-decoration: none;" href="/forget">Mot de passe oublié ?</a></div>
+        </form>
+    </div>
+    <div class="pres" style="position: relative; width: 60%;">
+        <div class="pres" style="top: 0; width: 100%; position: absolute; filter: blur(2px); opacity: 0.7; background-image: url(assets/images/background.jpg); background-position: center; background-size: cover;"></div>
+        <div style="position: absolute; width: 100%; top: 2vmin; font-weight: 700; font-size: 4vmin; text-align: center;">SOLUTION DE GESTION <br>DE LIVRAISONS</div>
+        <div style="position: absolute; left: 10%; width: 80%; height: 40vh;  top: 25vh; text-align: center; font-weight: 700; font-size: 2.8vmin;">Optez pour notre service rapide et fiable, exclusivement réservé aux clients de l'application.  Vous pouvez envoyez vos colis de toutes tailles et au tarif qui vous convient avec la possibilté de suivre leurs localisation en temps réel.<br><br>Si vous envisagez de rejoindre notre équipe de livreurs, profitez dès maintenant d'un abonnement d'essai de deux mois pour démarrer votre aventure avec nous.</div>
+    </div>
+    
+</div>
+
+
+
+

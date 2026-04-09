@@ -1,0 +1,206 @@
+<div id="pp" style="position: fixed; width: 100vw; height: 100vh; display: none; opacity: 0; z-index: 10; transition: all 0.4s ease-in-out;" #pp>
+    <div id="ms" style="position: absolute; width: 60vw; background-color: white; border-radius: 3px; box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;">
+        <img style="position : absolute; right : 1.5vmin; top : 1.5vmin; height: 3.4vmin; width: 3.4vmin; cursor: pointer; z-index : 3;" src="assets/icons/close.png" onclick="closeWindoww()">
+        <div id="map" style="height: 65vh;" #m></div>
+        <div id="details" style="height: 65vh;" #dts>
+            <h1 style="text-decoration: underline; color: #318CE7; font-size: 4vmin; font-weight: bold; text-align: center; letter-spacing: 2px; margin-top: 5vh; height: 7vh;">Détails de livraison</h1>
+            <div style="display: flex; align-items: center; justify-content: center; height: 47vh;">
+            <div style="width: 70%;">
+            <ul style="margin: 0; padding: 0;">
+            <li class="thh"><span class="spt">Tarif  :</span> {{ tarif }}DT</li>
+            <li class="thh" *ngIf="clients"><span class="spt">Téléphone livreur  :</span> {{ telLivreur }}</li>
+            <li class="thh" *ngIf="livreurs"><span class="spt">Téléphone client  :</span> {{ telClient }}</li>
+            <button style="margin-bottom: 1vh; border-radius: 3px; border: none; padding: 0.3vmin; border: solid 0.3vmin #318CE7; font-size: 2.8vmin;" (click)="affCin()">CIN livreur</button>
+            <li class="thh"><span class="spt">État actuelle :</span> <span *ngIf="etat != 'en attente acceptation'"> {{ etat }}</span><span *ngIf="etat == 'en attente acceptation'"> en attente d'acceptation</span>
+            <li class="thh" style="margin-bottom: 1vh;"><span class="spt">Date d'ajout :</span> {{ date }}</li>
+            <li class="thh"><span class="spt">Adresse de retrait :</span> {{ retr }}</li>
+            <li class="thh"><span class="spt">Adresse de destination :</span> {{ dest }}</li>
+            </ul>
+            </div>
+            </div>
+        </div>
+        <div id="adds" #adds style="height: 65vh;">
+            <h1 style="text-decoration: underline; color: #318CE7; font-size: 4vmin; font-weight: bold; text-align: center; letter-spacing: 2px; font-size: 4vmin; height: 7vh; margin-top: 5vh;">Modifer la livraison</h1>
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; margin-top: 1.5vh; height: 12vh;">
+                <label for="addep" class="lbl">Adresse de retrait<span style="color: red;">*</span></label>
+                <div style="position: relative; width: 70%;">
+                <input id="addep" class="form-control ads" style="font-size: 2.8vmin;" placeholder="Rechercher adresse" [(ngModel)] = "adr"  name="adr" (input)="handleInpp($event)" autocomplete="off" (click) = "displayy($event)" spellcheck="false">
+                <ul class="bd" *ngIf="showsgss" style="position: absolute; list-style: none; padding: 0; top: 6vh; background-color: white; font-size: 2.8vmin; max-height: 17vh; z-index: 2; overflow-y: auto; border-left: solid 1px #dee2e6; border-right: solid 1px #dee2e6; width: 100%; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;">
+                    <li class="sgs" *ngFor="let sg of sgss" (click)="selectAdd(sg)">{{ sg.title }}</li>
+                </ul>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; margin-top: 1.5vh; height: 12vh;">
+                <label for="addest" class="lbl">Adresse de destination<span style="color: red;">*</span></label>
+                <div style="position: relative; width: 70%;">
+                <input id="addest" class="form-control ads" style="font-size: 2.8vmin;" style="z-index: 0;"  placeholder="Rechercher adresse" [(ngModel)] = "ad"  name="ad" (input)="handleInp($event)" autocomplete="off" (click) = "display($event)" spellcheck="false">
+                <ul class="bd" *ngIf="showsgs" style="position: absolute; z-index: 1; list-style: none; padding: 0; top: 6vh; background-color: white; font-size: 2.8vmin; max-height: 17vh; overflow-y: auto; border-left: solid 1px #dee2e6; border-right: solid 1px #dee2e6; width: 100%; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;">
+                    <li class="sgs" *ngFor="let sg of sgs" (click)="selectAd(sg)">{{ sg.title }}</li>
+                </ul>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; margin-top: 1.5vh; height: 12vh;">
+                <label for="tyVh" class="lbl">Type de véhicule<span style="color: red;">*</span></label>
+                <div style="position: relative; width: 70%;">
+                <select id="tyVh" class="ads" [(ngModel)]="idVehicule" name="vehicule" style="font-size: 2.8vmin; z-index: 0; border-radius: 5px; border: solid 1px #dee2e6;" #ty> 
+                    <option *ngFor="let type of types" value="{{type.id}}" style="font-size: 2.8vmin;" class="op">{{ type.type }}</option>
+                </select>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; margin-top: 3.5vh; height: 7vh;">
+            <div style="display: flex; width: 43%; align-items: center; justify-content: center;">
+            <button [disabled] = "processing" class="btnn btt" style="font-size: 2.8vmin; padding: 1vmin; border: none; font-weight: 500; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" (click)="apply()">{{processing ? "..." : "Continuer"}}</button>
+            </div> 
+            </div>
+        </div>
+        <div id="update" #update style="height: 65vh;">
+            <h1 style="text-decoration: underline; color: #318CE7; font-size: 4vmin; font-weight: bold; text-align: center; letter-spacing: 2px; margin-top: 7vh; height: 7vh;">Compléter la modification</h1>
+            <div style="display: flex; align-items: center; justify-content: center; height: 40vh;">
+                <div style="position: relative; width: 70%;">
+                <label for="lv" style="font-size: 2.8vmin;">Livreur<span style="color: red;">*</span></label><br>
+                <div style="position: relative;">
+                <img src="assets/icons/dropdown.png" style="position: absolute; right: 1vh; top : 37%; width: 3.5vmin; height: 3.5vmin;">
+                <input id="lv" class="form-control" readonly style="cursor: pointer; height: 7vh; font-size: 2.8vmin;" [(ngModel)]="nomLivreur" name="nmLiv" (click)="drop()">
+                <div style="margin-top: 1vmin; display: none; top : 6.2vh; position: absolute; z-index: 1; width: 100%;" #dp>
+                    <div *ngFor="let livreur of livrr"  style="max-height: 10vh; overflow-y: auto; font-size: 2.8vmin; border-left: solid 1px #dee2e6; border-right: solid 1px #dee2e6; border-bottom: solid 1px #dee2e6; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; background-color: white;">
+                        <div class="sgs" style="display: flex; align-items: center;" (click) = "changeValue(livreur.id, livreur.nom + ' ' + livreur.prenom)"><img *ngIf="livreur.photo" [src]="'data:image/png;base64,' + livreur.photo"  style="height : 5vmin; width : 5vmin; margin-right: 2vmin; border-radius: 100vmin;"><img *ngIf="!livreur.photo && livreur.genre=='Masculin'" src="assets/images/man.jpg"  style="height : 5vmin; width : 5vmin; margin-right: 2vmin; border-radius: 100vmin; border: solid 0.4vmin;"><img *ngIf="!livreur.photo && livreur.genre == 'Feminin'" src="assets/images/woman.jpg"  style="height : 5vmin; width : 5vmin; margin-right: 2vmin; border-radius: 100vmin; border: solid 0.4vmin;">{{ livreur.nom }} {{ livreur.prenom }} </div>  
+                    </div>
+                </div>
+                </div>
+                
+                <div style="margin-top: 5vh; display: flex; align-items: center; justify-content: center;"> 
+                    <button [disabled]="processing" style="border: none; border-radius: 3px; padding: 1vmin;  font-size: 2.8vmin; font-weight: 500; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" id="btn" class="btt" (click)="updateLiv()">{{processing ? "..." : "Modifier"}}</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="addsIns" #addsIns style="height: 65vh;">
+            <h1 style="text-decoration: underline; color: #318CE7; font-size: 4vmin; height: 7vh; font-weight: bold; text-align: center; letter-spacing: 2px; margin-top: 5vh;">Ajouter une livraison</h1>
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; margin-top: 1.5vh; height: 12vh;">
+                <label for="adddep" class="lbl">Adresse de retrait<span style="color: red;">*</span></label>
+                <div style="position: relative; width: 70%;">
+                <input id="adddep" class="form-control ads" style="font-size: 2.8vmin;"  placeholder="Rechercher adresse" [(ngModel)] = "adr"  name="adr" (input)="handleInpp($event)" autocomplete="off" (click) = "displayy($event)" spellcheck="false">
+                <ul class="bd" *ngIf="showsgss" style="position: absolute; list-style: none; padding: 0; top: 6vh; background-color: white; font-size: 2.8vmin; max-height: 17vh; z-index: 2; overflow-y: auto; border-left: solid 1px #dee2e6; border-right: solid 1px #dee2e6; width: 100%; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;">
+                    <li class="sgs" *ngFor="let sg of sgss" (click)="selectAdd(sg)">{{ sg.title }}</li>
+                </ul>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; margin-top: 1vh; height: 12vh;">
+                <label for="adddest" class="lbl">Adresse de destination<span style="color: red;">*</span></label>
+                <div style="position: relative; width: 70%;">
+                <input id="adddest" class="form-control ads" style="font-size: 2.8vmin;" style="z-index: 0;"  placeholder="Rechercher adresse" [(ngModel)] = "ad"   name="ad" (input)="handleInp($event)" autocomplete="off" (click) = "display($event)" spellcheck="false">
+                <ul class="bd" *ngIf="showsgs" style="position: absolute; z-index: 1; list-style: none; padding: 0; top: 6vh; background-color: white; font-size: 2.8vmin; max-height: 17vh; overflow-y: auto; border-left: solid 1px #dee2e6; border-right: solid 1px #dee2e6; width: 100%; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;">
+                    <li class="sgs" *ngFor="let sg of sgs" (click)="selectAd(sg)">{{ sg.title }}</li>
+                </ul>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; margin-top: 1vh; height: 12vh;">
+                <label for="tyyVh" class="lbl">Type de véhicule<span style="color: red;">*</span></label>
+                <div style="position: relative; width: 70%;">
+                <select id="tyyVh" class="ads" [(ngModel)]="idVehicule" name="vehicule" style="font-size: 2.8vmin; z-index: 0; border-radius: 5px; border: solid 1px #dee2e6;">
+                    <option value="" hidden selected></option>
+                    <option *ngFor="let type of types" style="font-size: 2.8vmin;" value="{{type.id}}">{{ type.type }}</option>
+                </select>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; margin-top: 4.5vh; height: 7vh;">
+            <div style="display: flex; width: 43%; align-items: center; justify-content: center;">
+            <button [disabled] = "processing" class="button" class="btnn btt" style="padding: 1vmin; border: none; font-weight: 500; font-size: 2.8vmin; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" (click)="applyIns()">{{processing ? "..." : "Continuer"}}</button>
+            </div> 
+            </div>
+        </div>
+        <div id="add" #add style="height: 65vh;">
+            <h1 style="text-decoration: underline; color: #318CE7; font-size: 4vmin; font-weight: bold; text-align: center; letter-spacing: 2px; margin-top: 7vh; height: 7vh;">Compléter l'ajout</h1>
+            <div style="display: flex; align-items: center; justify-content: center; height: 45vh;">
+                <div style="position: relative; width: 70%;">
+                <label for="lvv" style="font-size: 2.8vmin;">Livreur<span style="color: red;">*</span></label><br>
+                <div style="position: relative;">
+                <img src="assets/icons/dropdown.png" style="position: absolute; right: 1vh; top : 37%; width: 3.5vmin; height: 3.5vmin;">
+                <input id="lvv" class="form-control" readonly style="cursor: pointer; height: 7vh; font-size: 2.8vmin;" [(ngModel)]="nomLivreur" name="nmLiv" (click)="dropp()">
+                <div style="max-height: 11vh; overflow-y: auto; margin-top: 1vmin; display: none; top : 6.2vh; position: absolute; z-index: 2; width: 100%;" #dppCl>
+                    <div *ngFor="let livreur of livrr"  style="font-size: 2.8vmin; border-left: solid 1px #dee2e6; border-right: solid 1px #dee2e6; border-bottom: solid 1px #dee2e6; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; background-color: white;">
+                        <div class="sgs" style="display: flex; align-items: center;" (click) = "changeValueAj(livreur.id, livreur.nom + ' ' + livreur.prenom)"><img *ngIf="livreur.photo" [src]="'data:image/png;base64,' + livreur.photo"  style="height : 4vmin; width : 4vmin; margin-right: 2vmin; border-radius: 100vmin;"><img *ngIf="!livreur.photo && livreur.genre==='Masculin'" src="assets/images/man.jpg"  style="height : 4vmin; width : 4vmin; margin-right: 2vmin; border-radius: 100vmin; border: solid 0.4vmin;"><img *ngIf="!livreur.photo && livreur.genre==='Feminin'" src="assets/images/woman.jpg"  style="height : 4vmin; width : 4vmin; margin-right: 2vmin; border-radius: 100vmin; border: solid 0.4vmin;">{{ livreur.nom }} {{ livreur.prenom }} </div>  
+                    </div>
+                </div>
+                </div>
+                <label for="cl" style="font-size: 2.8vmin; margin-top: 9vh;">Client<span style="color: red;">*</span></label><br>
+                <div style="position: relative;">
+                <img src="assets/icons/dropdown.png" style="position: absolute; right: 1vh; top : 37%; width: 3.5vmin; height: 3.5vmin;">
+                <input id="cl" class="form-control" readonly style="cursor: pointer; height: 7vh; font-size: 2.8vmin;" [(ngModel)]="nomClient" name="nmCl" (click)="dropCl()">
+                <div style="max-height: 11vh; overflow-y: auto; margin-top: 1vmin; display: none; top : 6.2vh; position: absolute; z-index: 1; width: 100%;" #dpCl>
+                    <div *ngFor="let client of clts"  style="font-size: 2.8vmin; border-left: solid 1px #dee2e6; border-right: solid 1px #dee2e6; border-bottom: solid 1px #dee2e6; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; background-color: white;">
+                        <div class="sgs" style="display: flex; align-items: center;" (click) = "changeValueCl(client.id, client.nom + ' ' + client.prenom)"><img *ngIf="client.photo" [src]="'data:image/png;base64,' + client.photo"  style="height : 4vmin; width : 4vmin; margin-right: 2vmin; border-radius: 100vmin;"><img *ngIf="!client.photo && client.genre==='Masculin'" src="assets/images/man.jpg"  style="height : 4vmin; width : 4vmin; margin-right: 2vmin; border-radius: 100vmin; border: solid 0.4vmin;"><img *ngIf="!client.photo && client.genre==='Feminin'" src="assets/images/woman.jpg"  style="height : 4vmin; width : 4vmin; margin-right: 2vmin; border-radius: 100vmin; border: solid 0.4vmin;">{{ client.nom }} {{ client.prenom }} </div>  
+                    </div>
+                </div>
+                </div>
+                
+                <div style="margin-top: 5vh; display: flex; align-items: center; justify-content: center;"> 
+                    <button [disabled]="processing" style="border: none; border-radius: 3px; padding: 1vmin;  font-size: 2.8vmin; font-weight: 500; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;" id="btn" class="btt" (click)="insertLiv()">{{processing ? "..." : "Ajouter"}}</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="cin" #cin style="height: 65vh;">
+            <div style="height: 65vh; display: flex; align-items: center; justify-content: center;">
+                <div class="cin" style="margin-top: 2.5vh; border-radius: 3px;">
+                <img class="img" style="width: 100%;" [src]="'data:image/png;base64,' + cinnn">
+                </div>
+            </div>
+            
+        </div>
+        
+        
+</div>
+</div>
+
+<div style="position: relative; z-index: 5;">
+<div [class.msg-shh] = "msgF_ll" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Livreur non trouvé!</span></div>
+<div [class.msg-shh] = "msgF_rt" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Veuillez entrer une adresse de retrait parmi les suggestions!</span></div>
+<div [class.msg-shh] = "msgF_dt" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Veuillez entrer une adresse de destination parmi les suggestions!</span></div>
+<div [class.msg-shh] = "msgF_dn" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Distance nulle non prise en charge!</span></div>
+<div [class.msg-shh] = "msgF_cl" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Client non trouvé!</span></div>
+<div [class.msg-shh] = "msgF_g" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Gouvernorat de retrait hors de notre zone de service!</span></div>
+<div [class.msg-shh] = "msgF_gd" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Gouvernorat de destination hors de notre zone de service!</span></div>
+<div [class.msg-shh] = "msgF_mp" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">La localisation du livreur est non disponible. Veuillez réessayer plus tard.</span></div>
+<div [class.msg-shh] = "msgF_clm" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Client manquant!</span></div>
+<div [class.msg-shh] = "msgF_lvm" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Livreur manquant!</span></div>
+<div [class.msg-shh] = "msgF_tym" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Type de véhicule manquant!</span></div>
+<div [class.msg-shh] = "msgF_nbb" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Veuillez accomplir votre livraison en cours!</span></div>
+<div [class.msg-shh] = "msgF_S" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/checked.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Livraison {{ this.idLivv }} est en attente d'acceptation!</span></div>
+<div [class.msg-shh] = "msgF_e" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Notre serveur rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span></div>
+<div [class.msg-shh] = "msgF_t" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Les types de véhicule ne sont pas disponibles à cause d'un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span></div>
+<div [class.msg-shh] = "msgF_df" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Le livreur et le client doivent être différents!</span></div>
+<div [class.msg-shh] = "msgF_ec" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Livraison en cours!</span></div>
+<div [class.msg-shh] = "msgF_ses" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/check.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">{{msgSessionn.msg}}</span></div>
+<div [class.msg-shh] = "msgF_abn" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Votre abonnement a expiré!</span></div>
+<div class="wrapper" style="margin-bottom: 3vmin; z-index: 1;">
+    <div style="width : 100%; position: relative;" id="dv-wp">
+    <button onclick="tgAj()" (click)="tgAj()" *ngIf="CRUD_livraisons" class="add" style="position: absolute; height: 5vh; left: 4vmin; border: none; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; border: solid 0.3vmin #318CE7; background-color: white; letter-spacing: 1px; font-size: 2.8vmin; padding: 0.2vmin; display: flex; align-items: center; justify-content: center;"><img src="assets/icons/add.png" style="height: 3.5vmin; width: 3.5vmin; margin-right: 1vmin;">Ajouter une livraison</button>
+    <button class="add" style="position: absolute; right: 20vmin; height: 5vh; border: none; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; border: solid 0.3vmin #318CE7; background-color: white; letter-spacing: 1px; font-size: 2.8vmin; padding: 0.2vmin;" (click)="rld()">Afficher tout</button><select class="add" style="position: absolute; right: 4vmin; height: 5vh; border-radius: 3px; border: solid 0.3vmin #318CE7; cursor: pointer;" (change)="affiche($event)"><option *ngFor="let nb of getNbs()" value="{{nb}}">{{nb}}</option></select>
+    <div class="dvv" #dvv>
+    <table class="tb" style="width: 100%; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;">
+        <thead>
+            <tr>
+                <th class="th" style="width: 15%;">Référence</th>
+                <th class="th" *ngIf="clients" style="width: 15%;">Livreur</th>
+                <th class="th" *ngIf="livreurs" style="width: 15%;">Client</th>
+                <th class="th">Détails</th>
+                <th class="th" *ngIf="accepter">Suivi Livraison</th>
+                <th class="th" *ngIf="livraison">Validation Étapes</th>
+                <th class="th" *ngIf="CRUD_livraisons" style="width: 15vmin;">Actions</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let liv of livraisons" [class.EnCours]="liv.etat== 'acceptée' || liv.etat == 'colis récupéré'">
+                <td>{{ liv.id }}</td>
+                <td *ngIf="clients"><img *ngIf="liv.photoLivreur" [src]="'data:image/png;base64,' + liv.photoLivreur" style="width: 7vmin; height : 7vmin; border-radius: 100vmin; margin-right: 1vmin;"><img *ngIf="!liv.photoLivreur && liv.genreLivreur === 'Masculin'" src="assets/images/man.jpg" style="width: 7vmin; height : 7vmin; border-radius: 100vmin; border: solid 0.4vmin; margin-right: 1vmin;"><img *ngIf="!liv.photoLivreur && liv.genreLivreur === 'Feminin'" src="assets/images/woman.jpg" style="width: 7vmin; height : 7vmin; border-radius: 100vmin; margin-right: 1vmin; border: solid 0.4vmin;" ><br>{{ liv.nomLivreur }}</td>
+                <td *ngIf="livreurs"><img *ngIf="liv.photoClient" [src]="'data:image/png;base64,' + liv.photoClient" style="width: 7vmin; height : 7vmin; border-radius: 100vmin; margin-right: 1vmin;"><img *ngIf="!liv.photoClient && liv.genreClient === 'Masculin'" src="assets/images/man.jpg" style="width: 7vmin; height : 7vmin; border-radius: 100vmin; border: solid 0.4vmin; margin-right: 1vmin;"><img *ngIf="!liv.photoClient && liv.genreClient === 'Feminin'" src="assets/images/woman.jpg" style="width: 7vmin; height : 7vmin; border-radius: 100vmin; margin-right: 1vmin; border: solid 0.4vmin;"><br>{{ liv.nomClient }}</td>
+                <td><img src="assets/icons/details.png" style="height: 3.7vmin; width: 3.7vmin; cursor: pointer;" onclick="tgg()" (click)="view(liv.tarif, liv.etat, liv.nom, liv.region, liv.codeP, liv.gouv, liv.depNom, liv.depRegion, liv.depCodeP, liv.depGouv, liv.date, liv.telClient, liv.telLivreur, liv.cinLivreur)"></td>
+                <td *ngIf="accepter"><button [disabled]="processing" *ngIf="liv.etat == 'colis récupéré' && liv.idLivreur != id" style="border: none; background-color: #00FF00; border-radius: 5px; border: solid 1px; padding: 0.6vmin; width: 14vmin; text-align: center;" (click)="suivreLivreur(liv.idLivreur , liv.id)" class="sv"><img src="assets/icons/suivre.png" style="height: 2.5vmin; width: 2.5vmin; margin-bottom: 0.5vmin; margin-right: 0.5vmin;">{{ processing ? "..." : "Suivre"}}</button><span *ngIf="liv.etat == 'refusée' || liv.etat == 'annulée' || liv.etat == 'effectuée' || liv.etat == 'en attente acceptation' || liv.etat == 'acceptée' || liv.idLivreur == id" style="font-size: 4vmin;">-</span></td>
+                <td *ngIf="livraison"><span *ngIf="liv.idLivreur == id"><span *ngIf="liv.etat == 'en attente acceptation'" class="btns"><button [disabled]="processing" style="border: solid 0.2vmin; background-color: #32CD32; border-radius: 5px; padding: 0.5vmin; width: 16vmin; font-size: 2.8vmin; display: flex; align-items: center; justify-content: center;" class="et-bt btnn bn" (click)="franchirAccepter(liv.id)"><img src="assets/icons/accepter.png" style="height: 3vmin; width: 3vmin;">{{ processing ? "..." : "Accepter"}}</button><button [disabled]="processing" style="background-color: #CE2029; border: solid 0.2vmin; border-radius: 5px; font-size: 2.8vmin; padding: 0.5vmin; width: 16vmin; display: flex; align-items: center; justify-content: center;" class="btnn bn" (click)="franchir(liv.id, 'refuser')"><img src="assets/icons/refuser.png" style="height: 2.5vmin; width: 2.5vmin; margin-right: 0.5vmin;">{{ processing ? "..." : "Refuser"}}</button></span><span *ngIf="liv.etat == 'acceptée'" class="btns"><button [disabled]="processing" class="btnn et-bt bn" style="border: solid 0.2vmin; font-size: 2.8vmin; background-color: #32CD32; border-radius: 5px; padding: 0.5vmin; width: 18vmin; display: flex; align-items: center; justify-content: center;" (click)="franchir(liv.id, 'récupérer');"><img src="assets/icons/récupérer.png" style="height: 3.5vmin; width: 3.5vmin;" class="ic">{{ processing ? "..." : "Récupérer"}}</button><button [disabled]="processing" class="btnn bn" style="border: solid 0.2vmin; font-size: 2.8vmin; background-color: #CE2029; border-radius: 5px; padding: 0.4vmin; width: 18vmin; display: flex; align-items: center; justify-content: center;" (click)="franchir(liv.id, 'annuler')"><img src="assets/icons/annuler.png" style="width: 3.4vmin; width: 3.4vmin; margin-right: 0.5vmin;">{{ processing ? "..." : "Annuler"}}</button></span><button [disabled]="processing" *ngIf="liv.etat == 'colis récupéré'" class="btnn bn" style="border: solid 0.2vmin; background-color: #32CD32; border-radius: 5px; padding: 0.6vmin; width: 18vmin; font-size: 2.8vmin; text-align: center;" (click)="franchir(liv.id, 'livrer')"><img src="assets/icons/livrer.png" style="height: 4.5vmin; width: 4.5vmin; margin-right: 0.5vmin;">{{ processing ? "..." : "Livrer"}}</button></span><span *ngIf="liv.etat == 'effectuée' || liv.etat=='annulée' || liv.etat == 'refusée' || liv.idLivreur != id" style="font-size: 4vmin;">-</span></td> 
+                <td *ngIf="CRUD_livraisons"><button style="background-color: transparent; border: none; padding: 0;" [disabled]="processing" *ngIf="liv.etat == 'en attente acceptation'"><img src="assets/icons/edit.png" style="height: 3.5vmin; width: 3.5vmin;" (click)="passer(liv.adresseDest, liv.adresseDep, liv.id, liv.nom, liv.region, liv.codeP, liv.gouv, liv.depNom, liv.depRegion, liv.depCodeP, liv.depGouv, liv.idVehicule)"></button><button [disabled]="processing" *ngIf="liv.etat == 'effectuée' || liv.etat == 'en attente acceptation' || liv.etat=='annulée' || liv.etat == 'refusée'" style="border: none; background-color: transparent; padding: 0; margin-left: 0.5vmin;"><img src="assets/icons/delete.png" style="height: 3.5vmin; width: 3.5vmin;" (click) = "delete(liv.id)"></button><span *ngIf="liv.etat != 'effectuée' && liv.etat != 'en attente acceptation' && liv.etat != 'annulée' && liv.etat!='refusée'" style="font-size: 4vmin;">-</span></td>
+            </tr>
+    </table>
+    </div>
+    </div>
+</div>

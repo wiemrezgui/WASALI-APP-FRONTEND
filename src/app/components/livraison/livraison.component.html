@@ -1,0 +1,19 @@
+<div class="wrp" style="position: relative;">
+    <img id="ic-menu" src="assets/icons/menu.png" style="height: 3.2vmin; width : 3.2vmin; margin-left: 1vmin; margin-top: 1vmin; z-index: 5;" onclick="changeMenu()" #ic>
+    <nav class="nv" style="width: 15%; height: 90vh; background-color: #edf3fa; background-image: linear-gradient(240deg, #edf3fa 0%, #fff 74%);">
+        <ul style="list-style: none; margin: 0; padding: 0; padding-top: 3vmin;">
+            <li class="li" [class.demande]="itemLivraisons" (click)="navigateToLivraisons()" routerLink="livraisons" routerLinkActive="active-link"><img src="assets/icons/delivery.png" style="margin-right: 1vmin; width: 2.5vmin; height: 2.5vmin;">Mes livraisons</li>
+            <li class="li" [class.demande]="!itemLivraisons" (click)="navigateToLivraisons()" routerLink="livraisons" routerLinkActive="active-link"><img src="assets/icons/delivery.png" style="margin-right: 1vmin; width: 2.5vmin; height: 2.5vmin;">Livraisons</li>
+            <li class="li" [class.demande]="!this.itemDemande" (click)="navigateToDemande()" routerLink="demande" routerLinkActive="active-link"><span style="display: flex; align-items: center;"><img src="assets/icons/request.png" style="margin-right: 1vmin; width: 2.3vmin; height: 2.3vmin;">Nouvelle demande</span></li>
+            <li style="margin-left: 1.4vmin; font-size: 2vmin; letter-spacing: 1px; cursor: pointer; padding-left: 1vmin;" (click)="navigateToHistorique()" routerLink="historique" routerLinkActive="active-link"><span style="display: flex; align-items: center;"><img src="assets/icons/history.png" style="margin-right: 1vmin; width: 2vmin; height: 2vmin;">Historique livraisons</span></li>
+        </ul>
+    </nav>
+    <nav id="nav" style="height: 90vh; background-color: #edf3fa; background-image: linear-gradient(240deg, #edf3fa 0%, #fff 74%);" class="nav" #nav>
+        <ul style="list-style: none; margin: 0; padding: 0; padding-top: 5vmin;">
+            <li class="linew" (click)="navigateToLivsRes()"><span><img src="assets/icons/delivery.png"style="margin-right: 2vmin; width: 3.8vmin; height: 3.6vmin;">Mes livraisons</span></li>
+            <li class="linew" [class.demande]="!this.itemDemande" style="margin-top: 1vmin;" (click)="navigateToDmRes()"><span style="display: flex; align-items: center;"><img src="assets/icons/request.png" style="margin-right: 2vmin; width: 3.6vmin; height: 3.6vmin;">Nouvelle demande</span></li>
+            <li class="linew" (click)="navigateToHistRes()"><span style="display: flex; align-items: center;"><img src="assets/icons/history.png" style="margin-right: 2vmin; width: 3.2vmin; height: 3.4vmin;">Historique livraisons</span></li>
+        </ul>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

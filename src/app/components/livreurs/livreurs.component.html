@@ -1,0 +1,16 @@
+<div class="wrp">
+    <img id="ic-menu" src="assets/icons/menu.png" style="height: 3.2vmin; width : 3.2vmin; margin-left: 1vmin; margin-top: 1vmin; z-index: 5;" onclick="changeMenu()" #ic>
+    <nav class="nv" style="width: 18%; height: 90vh; background-color: #edf3fa; background-image: linear-gradient(240deg, #edf3fa 0%, #fff 74%);">
+        <ul style="list-style: none; margin: 0; padding: 0; padding-top: 3vmin;">
+            <li class="li" (click)="navigateToGestion()" routerLink="gestionLivreurs" routerLinkActive="active-link"><span style="display: flex; align-items: center;"><img src="assets/icons/gestion.png" style="margin-right: 1vmin; width: 2.3vmin; height: 2.3vmin;">Gestion livreurs</span></li>
+            <li class="li" (click)="navigateToDemandesIns()" routerLink="demandesIns" routerLinkActive="active-link"><span style="display: flex; align-items: center;"><img src="assets/icons/request.png" style="margin-right: 1vmin; width: 2.3vmin; height: 2.3vmin;">Demandes d'inscription</span></li>
+        </ul>
+    </nav>
+    <nav id="nav" style="height: 90vh; background-color: #edf3fa; background-image: linear-gradient(240deg, #edf3fa 0%, #fff 74%);" class="nav" #nav>
+        <ul style="list-style: none; margin: 0; padding: 0; padding-top: 5vmin;">
+            <li class="linew" style="margin-top: 1vmin;" (click)="navigateToGtRes()"><span style="display: flex; align-items: center;"><img src="assets/icons/gestion.png" style="margin-right: 2vmin; width: 3.6vmin; height: 3.6vmin;">Gestion livreurs</span></li>
+            <li class="linew" (click)="navigateToDmsInsRes()"><span style="display: flex; align-items: center;"><img src="assets/icons/request.png" style="margin-right: 2vmin; width: 3.6vmin; height: 3.6vmin;">Demandes d'inscription</span></li>
+        </ul>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

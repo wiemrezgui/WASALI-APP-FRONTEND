@@ -1,0 +1,48 @@
+
+<div class="wrapper" style="padding: 3vmin; position: relative;">
+    <div [class.msg-shh]="msgF" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msg" style="position: absolute; border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img class="ic" src="assets/images/cross.png" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Notre serveur rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span></div>
+    <button style="position: absolute; right: 20vmin; height: 5vh; border: none; border-radius: 3px; box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px; border: solid 0.3vmin #318CE7; background-color: white; letter-spacing: 1px; font-size: 2.8vmin; padding: 0.2vmin;" (click)="aff()">Afficher tout</button><select style="position: absolute; right: 4vmin; height: 5vh; border-radius: 3px; border: solid 0.3vmin #318CE7; cursor: pointer;" (change)="affiche($event)" ><option *ngFor="let nb of getNbs()" value="{{nb}}">{{nb}}</option></select>
+    <div class="dv" *ngFor="let liv of histEtats" style="display: flex; align-items: center; margin-bottom: 2vh; margin-top: 7vh;">
+        <div  class="el" style="height: 15vh; text-align: center;">
+            <div style="background-color: #00FF00; box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; display: flex; align-items: center; justify-content: center; flex-direction: column; height: 15vh;">
+                <div style="font-weight: 500;"><span style="margin-right: 0.5vmin;">Demande</span><span style="font-style: italic;">Réf {{ liv.id }}</span></div>
+                <div>{{ liv.dateDeclenchement }}</div>
+            </div>
+        </div>
+        <div class="el" *ngIf="liv.accepter" style="height: 15vh;">
+            <div style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; text-align: center; display: flex; align-items: center; justify-content: center; flex-direction: column; background-color: #7DF9FF; height: 15vh;">
+                <div style="font-weight: 500;">Acceptation</div>
+                <div>{{ liv.dateDeclenchement }}</div>
+                <div>{{ liv.dateAccepter }}</div>
+            </div>
+        </div>
+        <div class="el" *ngIf="liv.refuser" style="height: 15vh;">
+            <div style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; text-align: center; display: flex; align-items: center; justify-content: center; flex-direction: column; height: 15vh; background-color: #DC143C;">
+                <div style="font-weight: 500;">Refus</div>
+                <div>{{ liv.dateDeclenchement }}</div>
+                <div>{{ liv.dateRefuser }}</div>
+            </div>
+        </div>
+        <div class="el" *ngIf="liv.recuperer" style="height: 15vh;">
+            <div style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; text-align: center; background-color: #7DF9FF; height: 15vh; display: flex; align-items: center; justify-content: center; flex-direction: column; height: 15vh;">
+                <div style="font-weight: 500;">Récupération</div>
+                <div>{{ liv.dateAccepter }}</div>
+                <div>{{ liv.dateRecuperer }}</div>
+            </div>
+        </div>
+        <div class="el" *ngIf="liv.annuler" style="height: 15vh;">
+            <div style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; text-align: center; background-color: #DC143C; height: 15vh; display: flex; align-items: center; justify-content: center; flex-direction: column; height: 15vh;">
+                <div style="font-weight: 500;">Annulation</div>
+                <div>{{ liv.dateAccepter }}</div>
+                <div>{{ liv.dateAnnuler }}</div>
+            </div>
+        </div>
+        <div class="el" *ngIf="liv.livrer" style="height: 15vh;">
+            <div style="box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px; text-align: center; background-color: #DC143C; height: 15vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <div style="font-weight: 500;">Livraison</div>
+                <div>{{ liv.dateRecuperer }}</div>
+                <div>{{ liv.dateLivrer }}</div>
+            </div>
+        </div>
+    </div>
+</div>

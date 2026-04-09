@@ -1,0 +1,160 @@
+.wrapper 
+{
+    width: 100%; 
+}
+.th 
+{
+    text-align: center;
+    font-size: 2.8vmin; 
+    padding: 0.7vmin; 
+}
+#ms 
+{
+    left: 20vw; 
+    height: 62vh;
+    top : 8vh;
+}
+@media screen and (max-width : 1000px) {
+    #ms 
+    {
+        top : -30vh;
+    }
+}
+#details 
+{
+    display: none;
+}
+#ajClt 
+{
+    display: none;
+}
+#stAj 
+{
+    display: none;
+}
+#sttAj 
+{
+    display: none;
+}
+#upCl 
+{
+    display: none;
+}
+#stUp 
+{
+    display: none;
+}
+#dtPriv 
+{
+    display: none;
+}
+#ajPriv 
+{
+    display: none;
+}
+#stPrv 
+{
+    display: none;
+}
+#sttPrv 
+{
+    display: none;
+}
+.li 
+{
+    margin-bottom: 1vh;
+}
+.msg-hdd 
+{
+    top: -180vmin;
+}
+.msg-shh 
+{
+    top: -5vmin; 
+}
+.msg 
+{
+    font-size: 1.7vmin;
+}
+.msgBg 
+{
+    font-size: 3vmin;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+.icBg 
+{
+    width: 2.4vmin; 
+    height: 2.4vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .msgBg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+    .icBg 
+    {
+        width: 3.5vmin; 
+        height: 3.5vmin;
+    }
+}
+tr:nth-of-type(odd)
+{
+    background-color: #edf3fa; 
+}
+tr:nth-of-type(even) 
+{
+    background-color: white;
+}
+.imgs 
+{
+    width: 3.9vmin; 
+    height: 3.9vmin;
+}
+.imgsAdd 
+{
+    width: 4.1vmin; 
+    height: 4.1vmin;
+}
+.btt
+{
+    background-color: #318CE7;
+}
+.btt:disabled 
+{
+    background-color: #ccc;
+    color: black;
+}
+.sl 
+{
+    border: solid 1px #dee2e6;
+}
+.bdd 
+{
+    border: solid 1px rgb(207, 21, 21);
+}
+.sgs 
+{
+    cursor: pointer; 
+    padding: 1vmin; 
+}
+.sgs:hover 
+{
+    background-color: #e9ecef;
+}
+.bd 
+{
+    border-bottom: solid 1px #dee2e6;
+}

@@ -1,0 +1,130 @@
+.logo 
+{
+    margin-left: 3.5vmin;  
+    text-decoration: none;
+}
+.title 
+{
+    margin-bottom: 3.5vmin; 
+    font-weight: 600;
+}
+.wd 
+{
+    width: 100vmin;   
+}
+.button  
+{
+    border: none; 
+    font-size: 2.6vmin; 
+    background-color: #318CE7;   
+}
+.button:disabled 
+{
+    background-color: #ccc;; 
+}
+.btnn 
+{
+    background-color: #318CE7;
+}
+.btnn:disabled 
+{
+    background-color: #ccc;
+}
+.button:hover
+{
+    opacity: 0.97; 
+}
+.btnn:hover
+{
+    opacity: 0.97; 
+}
+.div-lg 
+{
+    height: 72vh; 
+}
+input 
+{
+    height: 6.5vmin;    
+    font-size: 3vmin; 
+}
+.msg-hd 
+{
+    top: -200vmin;
+}
+.msg-sh 
+{
+    top: -10vmin; 
+}
+ul li:not(:last-child) 
+{
+    border-bottom: solid 1px #dee2e6;
+}
+.sgs 
+{
+    cursor: pointer; 
+    padding: 1vmin; 
+}
+.sgs:hover 
+{
+    background-color: #e9ecef;
+}
+.bd 
+{
+    border-bottom: solid 1px #dee2e6;
+}
+::placeholder 
+{
+    font-size: 2.8vmin; 
+    letter-spacing: 1px;
+}
+#ms 
+{
+    left: 20vw; 
+    height: 77vh;
+}
+.lb 
+{
+    font-size: 2.8vmin;
+    margin-bottom: 0.5vmin; 
+    letter-spacing: 1px;
+}
+.msg 
+{
+    font-size: 1.7vmin;
+}
+.msgBg 
+{
+    font-size: 3vmin;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+.icBg 
+{
+    width: 2.4vmin; 
+    height: 2.4vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .msgBg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+    .icBg 
+    {
+        width: 3.5vmin; 
+        height: 3.5vmin;
+    }
+}
+
+

@@ -1,0 +1,83 @@
+.logo 
+{
+    margin-left: 3.5vmin;  
+    text-decoration: none;
+}
+::placeholder 
+{
+    font-size: 3vmin;  
+    text-align: center; 
+}
+.title 
+{
+    margin-bottom: 2vmin;   
+    font-weight: 600;
+}
+.button  
+{
+    border: none; 
+    font-size: 2.4vmin; 
+    background-color: #318CE7;   
+}
+.button:disabled 
+{
+    background-color: #ccc;
+}
+.button:hover
+{
+    opacity: 0.97; 
+}
+.msg-hdd 
+{
+    top: -180vmin;
+}
+.msg-shh 
+{
+    top: -7vmin; 
+}
+.dv-hg 
+{
+    height: 8vmin;
+}
+.ip 
+{
+    border: solid 1.5px #318CE7;;
+}
+.msg 
+{
+    font-size: 1.7vmin;
+}
+.msgBg 
+{
+    font-size: 3vmin;
+}
+.ic 
+{
+    width: 1.7vmin; 
+    height: 1.7vmin;
+}
+.icBg 
+{
+    width: 2.4vmin; 
+    height: 2.4vmin;
+}
+@media screen and (max-width : 500px){
+    .msg 
+    {
+        font-size: 3.5vmin;
+    }
+    .msgBg 
+    {
+        font-size: 3.5vmin;
+    }
+    .ic 
+    {
+        width: 3.5vmin;
+        height: 3.5vmin;
+    }
+    .icBg 
+    {
+        width: 3.5vmin; 
+        height: 3.5vmin;
+    }
+}

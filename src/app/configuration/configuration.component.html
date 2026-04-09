@@ -1,0 +1,24 @@
+<div style="position: relative;">
+    <div [class.msg-shh] = "msgF" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="ic" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Notre serveur rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.</span></div>
+    <div [class.msg-shh] = "msgF_gv" class="msg-hdd" style="display: flex; align-items: center; justify-content: center; position: absolute; width: 100%; transition: 2s;"><span class="msgBg" style="position: absolute;  border-radius: 5px; background-color: white; display: flex; align-items: center; justify-content: center; padding: 5px; box-shadow: 0 3px 6px -4px rgba(0,0,0,.12), 0 6px 16px 0 rgba(0,0,0,.08), 0 9px 28px 8px rgba(0,0,0,.05);"><img src="assets/images/cross.png" class="icBg" style="margin-right: 0.5vmin; margin-top: 0.2vmin;">Gouvernorat encore relié à une ou plusieurs livraisons!</span></div>
+<div style="font-weight: 500; letter-spacing: 1px; font-size: 5.5vmin; text-align: center; text-decoration: underline; margin-top: 2vmin; color: #318CE7;">Liste des gouvernorats</div>
+<div style="display: flex; align-items: center; justify-content: center;">
+<table style="box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; width: 40%; margin-top: 6vmin; margin-bottom: 1vmin;">
+    <thead>
+        <tr style="background-color: #318CE7;">
+        <th style="font-weight: 500;" class="th">Gouvernorat</th>
+        <th style="font-weight: 500;" class="th">État</th>
+        <th style="font-weight: 500;" class="th">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let gv of gouvs">
+            <td class="th">{{ gv }}</td>
+            <td class="th"  *ngIf="checkGouv(gv)" style="color : #10db64;">inclu</td>
+            <td class="th" *ngIf="!checkGouv(gv)" style="color: red;">exclu</td>
+            <td class="th"><button [disabled]="processing" *ngIf="!checkGouv(gv)" style="border: none; background-color: transparent;" (click)="insertGouv(gv)"><img src="assets/icons/add.png" class="imgs"></button><button [disabled]="processing" *ngIf="checkGouv(gv)" style="border: none; background-color: transparent;" (click)="deleteGouv(gv)"><img src="assets/icons/delete.png" class="imgs"></button></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
