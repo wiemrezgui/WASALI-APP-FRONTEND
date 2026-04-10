@@ -17,10 +17,12 @@ import { HistoriqueEtatComponent } from './components/historique-etat/historique
 import { LivraisonsComponent } from './components/livraisons/livraisons.component';
 import { DemandesInscriptionComponent } from './components/demandes-inscription/demandes-inscription.component';
 import { GestionLivreursComponent } from './components/gestion-livreurs/gestion-livreurs.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 
 export const routes: Routes = [
-            { path: '', redirectTo: 'connexion', pathMatch:'full'},
+            { path: '', redirectTo: 'home', pathMatch:'full'},
+            { path: 'home', component: HomePageComponent },
             { path: 'connexion', component: LoginComponent },
             { path: 'inscription', component: SignUpComponent}, 
             { path: 'reset', component: ResetPasswordComponent}, 
