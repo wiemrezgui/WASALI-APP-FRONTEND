@@ -14,7 +14,7 @@ import { MsgSessionService } from '../../services/msg-session.service';
   styleUrl: './forgot-password.component.css'
 })
 export class ForgotPasswordComponent implements OnInit{
-
+  logoPath = 'assets/images/Wassali_Logo.png';
    
   processing = false; 
   msgF_em = false; 
@@ -107,7 +107,9 @@ export class ForgotPasswordComponent implements OnInit{
   }
 }
 
-  
+  scrollToPage(page: string) {
+    window.location.href = page;
+  }  
 
 
 

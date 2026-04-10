@@ -1,9 +1,9 @@
 <nav class="navbar">
 
- <div class="nav-inner">
+  <div class="nav-inner">
     <div class="nav-logo" (click)="scrollToPage('/home')">
       <div class="logo-icon">
-          <img [src]="logoPath" alt="wassali logo">
+        <img [src]="logoPath" alt="wassali logo">
       </div>
       <span class="logo-text">WASSALI</span>
     </div>
@@ -11,14 +11,14 @@
     <div class="nav-right">
       <button class="btn-connexion" (click)="scrollToPage('/connexion')">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
         </svg>
         Connexion
       </button>
       <button class="btn-primary-sm" (click)="scrollToPage('/inscription')">S'inscrire</button>
     </div>
-  </div>  
+  </div>
 </nav>
 
 <div class="signup-container">
@@ -29,28 +29,30 @@
     <div class="circle c3"></div>
   </div>
 
-  <!-- Alert messages -->
-  <span [class.msg-sh]="msgF_em" class="alert-toast alert-error" style="position: fixed; top: 80px; right: 20px; z-index: 1100;">
+  <span *ngIf="msgF_r" class="alert-toast alert-error" style="position: fixed; top: 80px; right: 20px; z-index: 1100;">
+    <div class="alert-content">
+      <img src="assets/images/cross.png" class="alert-icon">Les rôles ne sont pas disponibles à cause d'un problème de
+      traitement des requêtes au niveau du serveur mais nous nous sommes engagés pour le résoudre. Veuillez réessayer
+      plus tard.
+    </div>
+  </span>
+
+  <span *ngIf="msgF_em" class="alert-toast alert-error" style="position: fixed; top: 80px; right: 20px; z-index: 1100;">
     <div class="alert-content">
       <img src="assets/images/cross.png" class="alert-icon">Email déjà utilisé!
     </div>
   </span>
-  
-  <span [class.msg-sh]="msgF_se" class="alert-toast alert-error" style="position: fixed; top: 80px; right: 20px; z-index: 1100;">
+
+  <span *ngIf="msgF_se" class="alert-toast alert-error" style="position: fixed; top: 80px; right: 20px; z-index: 1100;">
     <div class="alert-content">
       <img src="assets/images/cross.png" class="alert-icon">Limite des sessions avec ce mail atteinte!
     </div>
   </span>
-  
-  <span [class.msg-sh]="msgF_e" class="alert-toast alert-error" style="position: fixed; top: 80px; right: 20px; z-index: 1100;">
+
+  <span *ngIf="msgF_e" class="alert-toast alert-error" style="position: fixed; top: 80px; right: 20px; z-index: 1100;">
     <div class="alert-content">
-      <img src="assets/images/cross.png" class="alert-icon">Notre serveur rencontre actuellement un problème de traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.
-    </div>
-  </span>
-  
-  <span [class.msg-sh]="msgF_r" class="alert-toast alert-error" style="position: fixed; top: 80px; right: 20px; z-index: 1100;">
-    <div class="alert-content">
-      <img src="assets/images/cross.png" class="alert-icon">Les rôles ne sont pas disponibles à cause d'un problème de traitement des requêtes au niveau du serveur mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.
+      <img src="assets/images/cross.png" class="alert-icon">Notre serveur rencontre actuellement un problème de
+      traitement des requêtes mais nous nous sommes engagés pour le résoudre. Veuillez réessayer plus tard.
     </div>
   </span>
 
@@ -65,12 +67,12 @@
         </div>
         <h1 class="signup-title">Créer un compte</h1>
         <p class="signup-subtitle">
-          Vous avez déjà un compte ? 
+          Vous avez déjà un compte ?
           <a href="/connexion">Se connecter</a>
         </p>
       </div>
 
-       <form #fm="ngForm" (ngSubmit)="onSubmit()" class="signup-form" novalidate>
+      <form #fm="ngForm" (ngSubmit)="onSubmit()" class="signup-form" novalidate>
         <!-- Row: Nom and Prénom -->
         <div class="form-row">
           <div class="form-group">
@@ -78,13 +80,12 @@
             <div class="input-wrapper">
               <span class="input-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
                 </svg>
               </span>
-              <input type="text" class="form-control" placeholder="Votre nom"
-                [(ngModel)]="user.nom" name="nom" #nom="ngModel" 
-                [class.is-invalid]="nom.invalid && (nom.dirty || nom.touched || fm.submitted)" 
+              <input type="text" class="form-control" placeholder="Votre nom" [(ngModel)]="user.nom" name="nom"
+                #nom="ngModel" [class.is-invalid]="nom.invalid && (nom.dirty || nom.touched || fm.submitted)"
                 pattern=".{3,40}" required>
             </div>
             <div *ngIf="nom.errors && (nom.dirty || nom.touched || fm.submitted)" class="error-message">
@@ -99,13 +100,12 @@
             <div class="input-wrapper">
               <span class="input-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
                 </svg>
               </span>
-              <input type="text" class="form-control" placeholder="Votre prénom"
-                [(ngModel)]="user.prenom" name="pnm" #pnm="ngModel" 
-                [class.is-invalid]="pnm.invalid && (pnm.dirty || pnm.touched || fm.submitted)" 
+              <input type="text" class="form-control" placeholder="Votre prénom" [(ngModel)]="user.prenom" name="pnm"
+                #pnm="ngModel" [class.is-invalid]="pnm.invalid && (pnm.dirty || pnm.touched || fm.submitted)"
                 pattern=".{3,40}" required>
             </div>
             <div *ngIf="pnm.errors && (pnm.dirty || pnm.touched || fm.submitted)" class="error-message">
@@ -123,14 +123,14 @@
             <div class="input-wrapper">
               <span class="input-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
                 </svg>
               </span>
-              <input type="text" class="form-control" placeholder="votre@email.com"
-                name="email" pattern="(?=.{1,256}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
-                [(ngModel)]="user.email" #email="ngModel" 
-                [class.is-invalid]="email.invalid && (email.dirty || email.touched || fm.submitted)" required>
+              <input type="text" class="form-control" placeholder="votre@email.com" name="email"
+                pattern="(?=.{1,256}$)[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" [(ngModel)]="user.email"
+                #email="ngModel" [class.is-invalid]="email.invalid && (email.dirty || email.touched || fm.submitted)"
+                required>
             </div>
             <div *ngIf="email.errors && (email.dirty || email.touched || fm.submitted)" class="error-message">
               <span>⚠️</span>
@@ -144,12 +144,12 @@
             <div class="input-wrapper">
               <span class="input-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
               </span>
               <input [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="Mot de passe"
-                name="password" pattern=".{8,40}" [(ngModel)]="user.password" #password="ngModel" 
+                name="password" pattern=".{8,40}" [(ngModel)]="user.password" #password="ngModel"
                 [class.is-invalid]="password.invalid && (password.dirty || password.touched || fm.submitted)" required>
               <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
                 <img [src]="showPassword ? 'assets/icons/visibility_off.png' : 'assets/icons/visibility_on.png'">
@@ -198,11 +198,12 @@
             <div class="input-wrapper">
               <span class="input-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.574 2.81.7A2 2 0 0 1 22 16.92z"/>
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.574 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
               </span>
-              <input type="text" pattern="[0-9]{8}" class="form-control" placeholder="Votre numéro"
-                name="tel" #tel="ngModel" [(ngModel)]="user.tel" 
+              <input type="text" pattern="[0-9]{8}" class="form-control" placeholder="Votre numéro" name="tel"
+                #tel="ngModel" [(ngModel)]="user.tel"
                 [class.is-invalid]="tel.invalid && (tel.touched || tel.dirty || fm.submitted)" required>
             </div>
             <div *ngIf="tel.errors && (tel.touched || tel.dirty || fm.submitted)" class="error-message">
@@ -217,8 +218,8 @@
             <div class="file-upload">
               <label class="file-upload-label" for="file">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                  <circle cx="12" cy="13" r="4"/>
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                  <circle cx="12" cy="13" r="4" />
                 </svg>
                 <span id="et-ph">Choisir une photo</span>
               </label>
@@ -229,7 +230,7 @@
 
         <button [disabled]="processing" class="btn-signup" type="submit">
           <span *ngIf="processing" class="spinner"></span>
-          {{ processing ? "Inscription en cours..." : "Continuer" }}
+          {{ processing ? "Inscription en cours..." : "S'inscrire" }}
         </button>
       </form>
     </div>
@@ -239,22 +240,22 @@
       <div class="hero-content-inner">
         <div class="hero-icon">
           <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
           </svg>
         </div>
         <h2 class="hero-title">Rejoignez l'aventure Wassali</h2>
         <p class="hero-description">
           Créez votre compte et profitez d'une expérience de livraison unique, rapide et fiable.
         </p>
-        
+
         <div class="feature-list">
           <div class="feature-item">
             <div class="feature-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"/>
+                <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
             <div class="feature-text">
@@ -265,8 +266,8 @@
           <div class="feature-item">
             <div class="feature-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <polyline points="12 6 12 12 16 14"/>
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
               </svg>
             </div>
             <div class="feature-text">
@@ -277,8 +278,8 @@
           <div class="feature-item">
             <div class="feature-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                <polyline points="22 4 12 14.01 9 11.01"/>
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
               </svg>
             </div>
             <div class="feature-text">
@@ -305,11 +306,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-

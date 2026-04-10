@@ -16,7 +16,7 @@ import { MsgSessionService } from '../../services/msg-session.service';
   styleUrl: './reset-password.component.css'
 })
 export class ResetPasswordComponent{
-
+  logoPath = 'assets/images/Wassali_Logo.png';
   pass! : string; 
   passt! : string; 
   email! : string;  
@@ -25,7 +25,8 @@ export class ResetPasswordComponent{
   msgS = false; 
   msgF_e = false; 
   processing = false;    
-   
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false
   constructor(private userService : UserService, private route : ActivatedRoute, private router : Router, private titleService : Title, public msgSession : MsgSessionService,  @Inject(PLATFORM_ID) private platformId: Object){}
   
 
@@ -150,4 +151,14 @@ export class ResetPasswordComponent{
 
     
   }
+  scrollToPage(page: string) {
+    window.location.href = page;
+  }
+  togglePasswordVisibility() {
+  this.showPassword = !this.showPassword;
+}
+
+toggleConfirmPasswordVisibility() {
+  this.showConfirmPassword = !this.showConfirmPassword;
+}
 }
