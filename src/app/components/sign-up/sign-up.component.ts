@@ -20,6 +20,7 @@ import { RoleService } from '../../services/role.service';
 })
 export class SignUpComponent implements  OnInit {
   logoPath = 'assets/images/Wassali_Logo.png';
+  showPassword: boolean = false;
   user: User = new User(); 
   roles: Role [] = []; 
   msgF_em = false;  
@@ -152,4 +153,7 @@ export class SignUpComponent implements  OnInit {
    scrollToPage(page: string) {
     window.location.href = page;
   }
+  togglePasswordVisibility() {
+  this.showPassword = !this.showPassword;
+}
 }
