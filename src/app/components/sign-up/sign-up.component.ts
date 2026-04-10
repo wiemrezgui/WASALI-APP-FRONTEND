@@ -19,7 +19,7 @@ import { RoleService } from '../../services/role.service';
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent implements  OnInit {
-  
+  logoPath = 'assets/images/Wassali_Logo.png';
   user: User = new User(); 
   roles: Role [] = []; 
   msgF_em = false;  
@@ -149,5 +149,7 @@ export class SignUpComponent implements  OnInit {
 
   }
 
-
+   scrollToPage(page: string) {
+    window.location.href = page;
+  }
 }

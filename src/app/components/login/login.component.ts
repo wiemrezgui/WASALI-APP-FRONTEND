@@ -17,7 +17,7 @@ import { MsgSessionService } from '../../services/msg-session.service';
 })
 
 export class LoginComponent implements OnInit{
-
+  logoPath = 'assets/images/Wassali_Logo.png';
   user: User = new User();
   msgF_em = false;
   msgF_v = false;
@@ -115,7 +115,9 @@ onSubmit(){
 
   }
 
-  
+ scrollToPage(page: string) {
+    window.location.href = page;
+  }
 
   
 }

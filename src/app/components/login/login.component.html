@@ -1,24 +1,25 @@
 <nav class="navbar">
 
-    <a class="logo" style="display: flex; align-items: center; position: relative;">
-      <img src="../assets/images/Wassali_Logo.png" style="width: 9vmin; height: 9vmin; cursor: pointer;" alt="Logo" onclick="navigateToLogin()">
-      <span style="left: 10vmin; font-weight: 600; color: var(--bc); font-size: 6.2vmin; letter-spacing: 3px; padding-bottom: 1.7vmin; position: absolute;"><span style="cursor: pointer;" onclick="navigateToLogin()">WASSA<span style="color: var(--lc);">LI</span></span></span> 
-    </a>
+ <div class="nav-inner">
+    <div class="nav-logo" (click)="scrollToPage('/home')">
+      <div class="logo-icon">
+          <img [src]="logoPath" alt="wassali logo">
+      </div>
+      <span class="logo-text">WASSALI</span>
+    </div>
 
-
-    
-
-    <ul class="navbar-nav d-flex flex-row">
-      <li class="nav-item">
-          <a class="nav-link" style="outline: none;" id="cn" href="/connexion">Se Connecter</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/inscription">S'Inscrire</a>
-      </li>
-    </ul>
-    
+    <div class="nav-right">
+      <button class="btn-connexion" (click)="scrollToPage('/connexion')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Connexion
+      </button>
+      <button class="btn-primary-sm" (click)="scrollToPage('/inscription')">S'inscrire</button>
+    </div>
+  </div>  
 </nav>
-
 <div class="div-lg" style="display: flex; align-items: center; margin-top: 7vmin;">
     
     <div class="wd" style="position: relative; margin-left: 2%; margin-right: 4%; margin-bottom: 3vh;">
